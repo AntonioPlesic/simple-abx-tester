@@ -1,5 +1,6 @@
 /bin
 /obj
-/libs
+/libs*
+/libs/android-support-v4.jar
 jni/libmp3lame/*
 !jni/libmp3lame/Android.mk
