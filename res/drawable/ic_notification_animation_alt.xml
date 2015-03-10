@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:oneshot="false" >
+    
+    <item android:drawable="@drawable/ic_notification_progress_0_alt" android:duration="133" />
+	<item android:drawable="@drawable/ic_notification_progress_1_alt" android:duration="133" />
+	<item android:drawable="@drawable/ic_notification_progress_2_alt" android:duration="133" />
+	<item android:drawable="@drawable/ic_notification_progress_3_alt" android:duration="133" />
+	<item android:drawable="@drawable/ic_notification_progress_4_alt" android:duration="133" />
+	<item android:drawable="@drawable/ic_notification_progress_5_alt" android:duration="133" />
+	<item android:drawable="@drawable/ic_notification_progress_6_alt" android:duration="133" />
+	<item android:drawable="@drawable/ic_notification_progress_7_alt" android:duration="133" />
+	<item android:drawable="@drawable/ic_notification_progress_8_alt" android:duration="133" />
+    
+</animation-list>

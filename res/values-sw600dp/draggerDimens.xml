@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- sw600dp, red -->
+    
+    <dimen name="draggerButtonLabelSize">45dp</dimen>
+    <color name="draggerButtonLabelColor">#000000</color>
+    <dimen name="draggerButtonStroke">6dp</dimen>
+    <dimen name="draggerButtonStrokeSelected">8.5dp</dimen>
+    
+    <dimen name="draggerDescriptiveTextSize">17dp</dimen>
+    <color name="draggerDescriptiveTextColor">#000000</color>
+    
+    <dimen name="resultTextSize">30dp</dimen>
+    <color name="resultTextColor">#000000</color>
+    
+    <dimen name="draggerDashWidth">10dp</dimen>
+    <dimen name="draggerDashGap">6dp</dimen>
+    
+</resources>

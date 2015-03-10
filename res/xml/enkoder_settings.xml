@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory android:title="LAME encoder options">
+          
+	    <ListPreference
+	        android:key="encoderBitrate"
+	        android:title="Bitrate" 
+	        android:dialogTitle="Bitrate"
+	        android:entries="@array/listBitrateOptions"
+	        android:entryValues="@array/listBitrateValues"
+	        android:defaultValue="@string/encoder_bitrate_default"
+	        />
+	    
+	    <CheckBoxPreference 
+		        android:key="advancedEncoder"
+		        android:title="Advanced"
+		        android:summary="Enables advanced LAME encoder settings"
+		   		android:defaultValue="false"/>
+	    
+	    <PreferenceScreen android:title="Quality"
+	        android:key="qualitySubscreen"
+	        android:dependency="advancedEncoder"
+	        >
+	        
+	        <antonioplesic.simpleabxtester.settings.PreferenceWithLongSummary
+			    android:key="qualitySubscreenDescription"
+			    android:selectable="false"
+			    android:persistent="false"
+			    android:summary="Quality setting determines the internal algorithm selection of LAME encoder. Even though this setting affects quality of encoding slightly, it is not the main contributor to percieved quality (that would be bitrate setting). This setting does not affect the resulting mp3 file size at all. What it does is, it determines wheter fast or slow algorithms will be used while encoding. Faster algorithms sacrifice accuracy to achieve speed, while more accurate algorithms take longer to complete. See LAME documentation on -q option for details. It is best that you leave this option as it is if you are not sure of what it does. If encoding to VBR, in this application quality value is not taken into account (for now)."/>
+	        	         
+		    <ListPreference 
+		        android:key="encoderQuality"
+		        android:title="Quality"
+		        android:dialogTitle="Quality"
+		        android:dependency="advancedEncoder"
+		        android:entries="@array/listQualityOptions"
+		        android:entryValues="@array/listQualityValues"
+		        android:defaultValue="@string/encoder_quality_default"
+		        
+		        />
+	    
+	    </PreferenceScreen>
+    </PreferenceCategory>
+    
+    <!-- <PreferenceCategory android:title="Data directory options">
+        
+	   <CheckBoxPreference 
+	       android:title="Use custom data directory"
+	       android:key="usesCustomDirectory"
+	       android:summaryOff="default directory: internalStorage/ABX test data"
+	       android:defaultValue="false"/>
+	   
+	   <EditTextPreference 
+	       android:title="Custom data directory"
+	       android:dependency="usesCustomDirectory"
+	       android:key="customDirectory"
+	       android:defaultValue="/storage/extSdCard"
+	       
+	       />
+	   
+    </PreferenceCategory> -->
+
+</PreferenceScreen>

@@ -1,0 +1,223 @@
+--- RangeSeekBar.java	2015-02-01 17:24:21.818181900 +0100
++++ RangeSeekBar.originalWork	2015-02-01 17:08:14.408183500 +0100
+@@ -14,15 +14,7 @@
+ limitations under the License.
+ */
+ 
+-/* NOTICE OF MODIFICATION
+-Heavily modified by Antonio Plesic for this specific use. 
+-Modifications are ad-hoc, badly and hastily written. No care at all was taken
+-to match the generality, ease of use and correctness of the original Work. Any
+-modification authored by Antonio Plesic is free in all possible ways. 
+-Modifications are listed in accompanying diff file.
+- */
+-
+-package antonioplesic.simpleabxtester.lifted;
++package com.yahoo.mobile.client.android.util;
+ 
+ import android.content.Context;
+ import android.content.res.TypedArray;
+@@ -35,10 +27,9 @@
+ import android.view.MotionEvent;
+ import android.view.ViewConfiguration;
+ import android.widget.ImageView;
+-import antonioplesic.simpleabxtester.R;
++import com.yahoo.mobile.client.android.demo.rangeseekbar.R;
+ 
+ import java.math.BigDecimal;
+-import java.util.concurrent.TimeUnit;
+ 
+ /**
+  * Widget that lets users select a minimum and maximum value on a given numerical range.
+@@ -63,11 +54,11 @@
+  */
+ public class RangeSeekBar<T extends Number> extends ImageView {
+ 
+-    public static final int DEFAULT_MINIMUM = 0;
+-    public static final int DEFAULT_MAXIMUM = 100;
++    public static final Integer DEFAULT_MINIMUM = 0;
++    public static final Integer DEFAULT_MAXIMUM = 100;
+     public static final int HEIGHT_IN_DP = 30;
+     public static final int TEXT_LATERAL_PADDING_IN_DP = 3;
+-    private static final int INITIAL_PADDING_IN_DP = 0; //MODIFIED:
++    private static final int INITIAL_PADDING_IN_DP = 8;
+     private final int LINE_HEIGHT_IN_DP = 1;
+     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+     private final Bitmap thumbImage = BitmapFactory.decodeResource(getResources(), R.drawable.seek_thumb_normal);
+@@ -105,10 +96,6 @@
+ 
+     private int mActivePointerId = INVALID_POINTER_ID;
+ 
+-    /**
+-     * On touch, this offset plus the scaled value from the position of the touch will form the progress value. Usually 0.
+-     */
+-    float mTouchProgressOffset;
+     private int mScaledTouchSlop;
+ 
+     private boolean mIsDragging;
+@@ -152,9 +139,9 @@
+         }
+     }
+ 
+-    private final void init(Context context, AttributeSet attrs) {
++    private void init(Context context, AttributeSet attrs) {
+         if (attrs == null) {
+-            setRangeValues(DEFAULT_MINIMUM, DEFAULT_MAXIMUM);
++            setRangeToDefaultValues();
+         } else {
+             TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.RangeSeekBar, 0, 0);
+             setRangeValues(
+@@ -191,9 +178,11 @@
+         setValuePrimAndNumberType();
+     }
+ 
+-    public void setRangeValues(int minValue, int maxValue) {
+-        this.absoluteMinValue = (T) Integer.valueOf(minValue);
+-        this.absoluteMaxValue = (T) Integer.valueOf(maxValue);
++    @SuppressWarnings("unchecked")
++    // only used to set default values when initialised from XML without any values specified
++    private void setRangeToDefaultValues() {
++        this.absoluteMinValue = (T) DEFAULT_MINIMUM;
++        this.absoluteMaxValue = (T) DEFAULT_MAXIMUM;
+         setValuePrimAndNumberType();
+     }
+ 
+@@ -203,12 +192,6 @@
+         numberType = NumberType.fromNumber(absoluteMinValue);
+     }
+ 
+-    public void setRangeValues(double minValue, double maxValue) {
+-        this.absoluteMinValue = (T) Double.valueOf(minValue);
+-        this.absoluteMaxValue = (T) Double.valueOf(maxValue);
+-        setValuePrimAndNumberType();
+-    }
+-
+     public void resetSelectedValues() {
+         setSelectedMinValue(absoluteMinValue);
+         setSelectedMaxValue(absoluteMaxValue);
+@@ -485,8 +468,7 @@
+         float minMaxHeight = mTextOffset + thumbHalfHeight + mTextSize / 3;
+         canvas.drawText(minLabel, 0, minMaxHeight, paint);
+         canvas.drawText(maxLabel, getWidth() - minMaxLabelSize, minMaxHeight, paint);
+-//      padding = INITIAL_PADDING + minMaxLabelSize + thumbHalfWidth;
+-        padding = INITIAL_PADDING + thumbHalfWidth;
++        padding = INITIAL_PADDING + minMaxLabelSize + thumbHalfWidth;
+ 
+         // draw seek bar background line
+         mRect.left = padding;
+@@ -503,14 +485,9 @@
+         // draw seek bar active range line
+         mRect.left = normalizedToScreen(normalizedMinValue);
+         mRect.right = normalizedToScreen(normalizedMaxValue);
+-        
+ 
+         paint.setColor(colorToUseForButtonsAndHighlightedLine);
+-        
+-        //MODIFIED:
+-        paint.setStrokeWidth(7); //TODO: probably should depend on dpi somehow
+-//        canvas.drawRect(mRect, paint);
+-        canvas.drawLine(mRect.left, mRect.centerY(), mRect.right, mRect.centerY(), paint);
++        canvas.drawRect(mRect, paint);
+ 
+         // draw minimum thumb if not a single thumb control
+         if (!mSingleThumb) {
+@@ -523,34 +500,29 @@
+                   selectedValuesAreDefault);
+ 
+         // draw the text if sliders have moved from default edges
+-//      if (!selectedValuesAreDefault) { 	/*I want it shown always*/
+-        paint.setTextSize(mTextSize);
+-        paint.setColor(Color.BLACK);
+-//      paint.setAntiAlias(true);
+-        // give text a bit more space here so it doesn't get cut off
+-        int offset = PixelUtil.dpToPx(getContext(), TEXT_LATERAL_PADDING_IN_DP);
+-
+-//      String minText = "Start: " + String.valueOf(getSelectedMinValue());
+-//      String maxText = "End: " + String.valueOf(getSelectedMaxValue());
+-        String minText = "Start: " + timeNice(getSelectedMinValue());
+-        String maxText = "End: " + timeNice(getSelectedMaxValue());
+-        float minTextWidth = paint.measureText(minText) + offset;
+-        float maxTextWidth = paint.measureText(maxText) + offset;
+-
+-        if (!mSingleThumb) {
+-            canvas.drawText("  " + minText + "  " + maxText,
+-//                                normalizedToScreen(normalizedMinValue) - minTextWidth * 0.5f,
+-            				0,
+-                            mDistanceToTop + mTextSize + 4,
+-                            paint);
+-
+-//            }
++        if (!selectedValuesAreDefault) {
++            paint.setTextSize(mTextSize);
++            paint.setColor(Color.WHITE);
++            // give text a bit more space here so it doesn't get cut off
++            int offset = PixelUtil.dpToPx(getContext(), TEXT_LATERAL_PADDING_IN_DP);
++
++            String minText = String.valueOf(getSelectedMinValue());
++            String maxText = String.valueOf(getSelectedMaxValue());
++            float minTextWidth = paint.measureText(minText) + offset;
++            float maxTextWidth = paint.measureText(maxText) + offset;
++
++            if (!mSingleThumb) {
++                canvas.drawText(minText,
++                                normalizedToScreen(normalizedMinValue) - minTextWidth * 0.5f,
++                                mDistanceToTop + mTextSize,
++                                paint);
+ 
++            }
+ 
+-//            canvas.drawText(maxText,
+-//                            normalizedToScreen(normalizedMaxValue) - maxTextWidth * 0.5f,
+-//                            mDistanceToTop + mTextSize,
+-//                            paint);
++            canvas.drawText(maxText,
++                            normalizedToScreen(normalizedMaxValue) - maxTextWidth * 0.5f,
++                            mDistanceToTop + mTextSize,
++                            paint);
+         }
+ 
+     }
+@@ -635,7 +607,7 @@
+      *
+      * @param value The new normalized min value to set.
+      */
+-    public void setNormalizedMinValue(double value) {
++    private void setNormalizedMinValue(double value) {
+         normalizedMinValue = Math.max(0d, Math.min(1d, Math.min(value, normalizedMaxValue)));
+         invalidate();
+     }
+@@ -645,7 +617,7 @@
+      *
+      * @param value The new normalized max value to set.
+      */
+-    public void setNormalizedMaxValue(double value) {
++    private void setNormalizedMaxValue(double value) {
+         normalizedMaxValue = Math.max(0d, Math.min(1d, Math.max(value, normalizedMinValue)));
+         invalidate();
+     }
+@@ -777,25 +749,5 @@
+             throw new InstantiationError("can't convert " + this + " to a Number object");
+         }
+     }
+-    
+-    private String timeNice(T milis){
+-    	
+-    	Long remainingMilis = milis.longValue();
+-    	
+-    	long minutes = TimeUnit.MILLISECONDS.toMinutes(remainingMilis);
+-    	remainingMilis -= TimeUnit.MINUTES.toMillis(minutes);
+-    	
+-    	long seconds = TimeUnit.MILLISECONDS.toSeconds(remainingMilis);
+-    	remainingMilis -= TimeUnit.SECONDS.toMillis(seconds);
+-    	
+-    	StringBuilder b = new StringBuilder();
+-    	b.append(String.format("%02d",minutes));
+-    	b.append(":");
+-    	b.append(String.format("%02d", seconds));
+-    	b.append(".");
+-    	b.append(String.format("%03d",remainingMilis));
+-    	
+-    	return b.toString();
+-    }
+ 
+ }

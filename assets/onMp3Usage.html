@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" another="value" andanother="">
+<head>
+  <meta charset="utf-8">
+  <title>On mp3 encoding capabilities of this app</title>
+</head>
+<body>
+
+<header>
+<h1>On mp3 encoding capabilities of this app</h1>
+</header>
+
+<section>
+<article>
+<p>One of the purposes of this app is to enable easy testing of the impact the bitrate property has on the perceived quality of an mp3 file. For this experimental purpose, an mp3 encoding procedure is needed to produce a temporary mp3 file. Mp3 file is then decoded, and its decoded representation is then compared to the original file being used to produce that temporary mp3 file. For the duration of this process, mp3 file exists only shortly, in the user inaccessible space, which is flushed as soon as the decoded representation of the file is obtained. To achieve all this, this application uses LAME.</p>
+
+<p>This app DOES NOT enable one to use it for practical mp3 encoding. It does not, for the practical purposes, produce the compressed, which is the main goal of mp3 encoding, mp3 file that can then be further distributed for various purposes, which include profit; it only produces a raw pcm file that has the same sonic qualities as the mp3 file, but that does not have the main intended property of the mp3 format - an order of magnitude smaller size. Therefore, in this app, LAME is used as a filter that makes the target pcm file sound the same as the mp3 file that would be obtained from some input pcm file, and not to output the mp3 file itself.</p>
+
+<p>Also, this app is:
+<ul>
+<li>free</li>
+<li>non profit (no ads)</li>
+<li>open sourced on GitHub (as of writing this, more correct term would be "soon to be open sourced on GitHub")</li>
+</ul>
+</p>
+
+<p>Only possible profit I see to obtain from this is the showcase of my programming skills to the potential employer.</p>
+
+<p>With all this being stated, I personally feel and hope that the usage of mp3 encoding procedures in this app is fair and not in conflict with the goals of current mp3 patent holders in the territories where those still hold. Since I believe that sufficient care is taken that this app does not produce the mp3 files, I believe that reverse engineering it to do so, while technically possible, is highly impractical, given the multitude of free and paid software easily obtainable that can produce mp3 files hassle free.</p>
+
+
+
+</article>
+</section>
+</body>
+</html>

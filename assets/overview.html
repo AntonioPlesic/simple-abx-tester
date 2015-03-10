@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" another="value" andanother="">
+<head>
+  <meta charset="utf-8">
+  <title>Overview</title>
+</head>
+<body>
+
+<header>
+<h1>Simple ABX Tester</h1>
+</header>
+
+<section>
+<article>
+
+Simple ABX Tester is a simple and intuitive audio abx application that enables you to perform double blind listening tests of various audio formats on your Android device.
+
+<h3>Testing impact of mp3 bitrates on sound quality</h3>
+<p>For testing mp3, app provides automatic test preparation mode: all you need to do is select a lossless source file and how you wish to encode it and app will do the rest:
+<ol>
+<li>decode the lossless source to raw pcm for playback</li>
+<li>encode the source to mp3 of the desired bitrate/quality, using LAME v3.99.5 encoder</li>
+<li>decode the encoded file to raw pcm for playback, using LAME supplied version of mpeg123/limpeg decoder</li>
+<li>synchronize the two raw files, so there are no audible clicks or silences while switching between tracks</li>
+</ol></p>
+
+<p>
+<h3>Self-prepared mode</h3>
+For testing all other file types or encoders. You can easily test other file types and encoders/decoders by providing the decoded (to wav) files yourself. <a href="selfPreparedFilesModeNew.html">Explained in detail here.</a>
+</p>
+
+<h3>Intuitive interfaces</h3>
+App provides two types of switching interfaces:
+<ul>
+<li>ABXY - a Foobar2000 ABX plugin inspired ABXY interface, where all you need to do is match any two tracks you think sound the same using drag and drop.</li><br>
+<li>ABX - you are provided a reference track, and you must answer which of the two choice tracks sounds the same as reference. Alternatively, if you prefer it that way, you can answer by choosing the choice track that is different from the reference.</li>
+</ul>
+In both interfaces, switching between the tracks is almost instantaneous, and there are no clicks or pauses while the switching takes place (provided the files are synchronized), so there are no tells you could use to cheat the test.
+
+<h3>Simple statistics</h3>
+<p> After each answer, app tells you whether you answered correctly and counts how many times you were correct. More importantly, it also tells you the likelihood that you were guessing, i.e. a chance of achieving the same or better result by simply guessing.
+
+<!-- <h3>Rationale</h3>
+<p>I listen to most my music on my phone and headphones, either during commute or late at night, so I thought it would be nice to have a way to perform an abx test in such environments. But, most if not all android devices come with headphone port, so connecting your device to your hi-fi or whatever shouldn't be a problem if you want to perform test there.</p> -->
+
+</article>
+</section>
+</body>
+</html>

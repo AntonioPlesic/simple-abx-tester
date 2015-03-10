@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item 	
+        android:id="@+id/up"
+        android:title="Up"
+        android:icon="@drawable/ic_up"
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:showAsAction="ifRoom"/>
+<!--         <item android:title="dodatno"
+            android:showAsAction="ifRoom">
+            <menu >
+                <item android:title="Sort by"
+                    android:id="@+id/sort"/>
+                <item android:title="foo"/>
+            </menu>
+        </item> -->
+        
+    <item 	android:title="Create folder"
+        	android:id="@+id/create_folder"
+        	android:showAsAction="collapseActionView"/>    
+    
+	<item 	android:title="Sort by"
+		  	android:id="@+id/sort"
+		  	android:showAsAction="collapseActionView"/>
+
+<!--Should sort criteria be choosen in a dialog, or like this?
+	Currently sticking to dialog -->
+<!-- 	
+	<item 
+	    android:id="@+id/dummySort"
+	    android:title="dummySort"
+	    android:showAsAction="never">
+	    <menu >
+	        <group android:checkableBehavior="single">
+	            <item 
+	                android:id="@+id/opcija1"
+	                android:title="A to Z"/>
+	            <item 
+	                android:id="@+id/opcija2"
+	                android:title="Z to A"/>
+	        </group>
+	    </menu>
+	    
+	</item>
+-->
+    
+
+</menu>

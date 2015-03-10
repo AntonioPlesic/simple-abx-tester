@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" 
+    android:descendantFocusability="blocksDescendants">
+
+    <CheckBox
+        android:id="@+id/picker_item_check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical" />
+
+    <!-- android:textAppearance="?android:attr/textAppearanceMedium" -->
+
+    <ImageView
+        android:id="@+id/picker_item_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp"
+        android:paddingEnd="5dp"
+        android:paddingLeft="1dp"
+        android:paddingStart="1dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/dropable" />
+
+    <TextView
+        android:id="@+id/picker_item_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="TextView" />
+
+</LinearLayout>

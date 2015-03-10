@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- default, black -->
+    
+    <dimen name="draggerButtonLabelSize">20dp</dimen>
+    <color name="draggerButtonLabelColor">#000000</color>
+    <dimen name="draggerButtonStroke">5dp</dimen>
+    <dimen name="draggerButtonStrokeSelected">7dp</dimen>
+    
+    <dimen name="draggerDescriptiveTextSize">12sp</dimen>
+    <color name="draggerDescriptiveTextColor">#000000</color>
+    
+    <dimen name="resultTextSize">20dp</dimen>
+    <color name="resultTextColor">#000000</color>
+    <string name="resultTextMaxLines">3</string>
+    
+</resources>

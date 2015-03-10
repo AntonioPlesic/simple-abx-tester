@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/self_prepared_layout_scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:fadeScrollbars="false">
+    
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical" >
+    
+    
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+       	android:layout_height="wrap_content" 
+       	>
+       	
+        
+        
+        <TextView
+            android:id="@+id/self_prepared_layout_track1textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/self_prepared_layout_track1btn"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/self_prepared_select_track_1"
+            android:background="@drawable/self_prepared_select_file_state_list_background"
+            android:clickable = "true"
+            android:padding="10dp"
+            android:gravity="center_horizontal"
+            
+            />
+        
+        
+
+        <!-- <Button
+            android:id="@+id/self_prepared_layout_track1btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/self_prepared_select_track_1"
+            android:visibility="gone"
+            /> -->
+        
+    </RelativeLayout>
+    
+    <Space 
+        android:layout_height="5dp"
+        android:layout_width="match_parent"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/self_prepared_layout_track2textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_toLeftOf="@+id/self_prepared_layout_track2btn"
+            android:text="@string/self_prepared_select_track_2"
+            android:background="@drawable/self_prepared_select_file_state_list_background"
+            android:clickable = "true"
+            android:padding="10dp" 
+            android:gravity="center_horizontal"
+
+            />
+
+        <!-- <Button
+            android:id="@+id/self_prepared_layout_track2btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/self_prepared_select_track_2"
+            android:visibility="gone"
+            /> -->
+    </RelativeLayout>
+
+    <LinearLayout 
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/self_prepared_test_type"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RadioGroup
+            android:id="@+id/self_prepared_radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/self_prepared_radioABXY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="ABXY" />
+
+            <RadioButton
+                android:id="@+id/self_prepared_radioABX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ABX" />
+        </RadioGroup>
+
+    </LinearLayout>    
+    
+    
+    <CheckBox 
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/syncCheckBox"
+        android:checked="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/self_prepared_sync"
+        />
+
+    
+    
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right" >
+
+        <Button
+            android:id="@+id/self_prepared_layout_ok_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/self_prepared_ok"
+            android:background="@drawable/self_prepared_select_file_state_list_background"
+            />
+        
+    </LinearLayout>
+
+    <TextView
+        android:paddingTop="5dp"
+        android:id="@+id/sync_explanation_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/self_prepared_sync_explanation"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</LinearLayout>
+
+</ScrollView>

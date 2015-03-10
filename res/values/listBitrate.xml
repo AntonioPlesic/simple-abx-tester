@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="listBitrateOptions">
+        <item >CBR 64</item>
+        <item >CBR 96</item>
+        <item >CBR 128</item>
+        <item >CBR 192</item>
+        <item >CBR 320</item>
+        <item >VBR V0</item>
+        <item >VBR V1</item>
+        <item >VBR V2</item>
+        <item >VBR V3</item>
+        <item >VBR V4</item>
+        <item >VBR V5</item>
+        <item >VBR V6</item>
+        
+    </string-array>
+    
+    <string-array name="listBitrateValues">
+        <item >64</item>
+        <item >96</item>
+        <item >128</item>
+        <item >192</item>
+        <item >320</item>
+        <item >500</item>
+        <item >490</item>
+        <item >480</item>
+        <item >470</item>
+        <item >460</item>
+        <item >450</item>
+        <item >440</item>
+    </string-array>
+    
+    <string name="encoder_bitrate_default">128</string>
+    
+</resources>

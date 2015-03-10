@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/roundedbuttonstatic"
+    android:orientation="vertical">
+    
+    <TextView
+        android:id="@+id/itemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:text="ABXY"
+        android:textSize="50dp"
+        android:gravity="center"
+        
+        />
+    
+    <TextView 
+        android:id="@+id/itemDescription"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:text="Use drag and drop to match 2 reference tracks with 2 XXX tracks"
+        android:textSize="20dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        
+        />
+    
+    <ImageView 
+        android:paddingTop="10dp"
+        android:id="@+id/itemDescriptiveImage"
+        android:layout_below="@+id/itemDescription"
+        android:layout_weight="0.6"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/capture"
+        
+        />
+
+</LinearLayout>

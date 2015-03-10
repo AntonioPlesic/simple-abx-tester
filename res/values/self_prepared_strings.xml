@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="self_prepared_none_selected">None selected</string>
+    <string name="self_prepared_select_track_1">Track 1: none selected</string>
+    <string name="self_prepared_select_track_2">Track 2: none selected</string>
+    <string name="self_prepared_test_type">Test type:</string>
+    <string name="self_prepared_sync">Synchronize\ntracks*</string>
+    <string name="self_prepared_ok">OK</string>
+    <string name="self_prepared_sync_explanation">* App will try to sync tracks for seamless switching between them. Therefore you don\'t need to worry about padding added by encoders (if reasonably sized). <b>If switching between tracks is not seamless, any performed test is invalid</b> beacause tracks can be differentiated by playback position.</string>
+    
+    
+</resources>

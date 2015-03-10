@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" another="value" andanother="">
+<head>
+  <meta charset="utf-8">
+  <title>Storage considerations</title>
+</head>
+<body>
+
+<header>
+<h1>Storage considerations</h1>
+</header>
+
+<section>
+<article>
+
+<p>This App is quite liberal with the storage space it uses.</p>
+<p>In part, this is due to the fact that it operates on raw audio data, which is naturally quite big compared to mp3 and other lossy formats.
+A 5 minute song, saved using uncompressed, signed, linear pulse code modulation, sampled at 44.1kHz using 16 bits per sample, and having 2 channels will take around 50MB of storage space. Note that this corresponds to the CD quality. To abx test one song, you need two such files, therefore App generates 100MB of data for each 5 minute song you test. It is obvious that this can accumulate rather quickly if not careful, <b>so you should from time to time manage the space App uses</b> by going to the App Manager (might be differently named on some devices), where you can see the list of all apps installed on your device, select the "Simple ABX Tester" and press "Clear data". This will clear all the files the App stored internally.</p>
+<p>The other part is due to my laziness :) .
+Generally, one would not need to use so much space if on the fly encoding/decoding is used, like your everyday audio player does, but that would be a bit more complex to implement. Coming in future updates.</p>
+
+<h2>Inspecting/exporting generated files</h2>
+
+<p>By default, App uses internal storage invisible to user for saving encoded and decoded files. If you wish to inspect the files App generated, you can set it to use some external directory by checking the "Use custom data directory" setting. However, if you do so, you must manage the custom directory yourself, taking care that it doesn't use up too much space, by deleting the files you don't need anymore from time to time. In other words, you can't use "App Manager"->"Simple ABX Tester"->"Clear data" method described earlier: you must navigate to the directory used using some file explorer that is capable of deleting files, deleting what you don't need anymore manually.</p>
+<p><b>Important note:</b> this option most likely does not work on vanilla 4.4 (KitKat) version of Android if you select an actual physical sd-card/usb drive as location for the directory.</p>
+
+</article>
+</section>
+</body>
+</html>

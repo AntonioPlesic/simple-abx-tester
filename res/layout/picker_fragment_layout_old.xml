@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/upButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Up" />
+
+    <Button
+        android:id="@+id/self_prepared_layout_track2btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/upButton"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/buttonSortBy"
+        android:layout_toRightOf="@+id/upButton"
+        android:layout_weight="1"
+        android:text="OK" />
+
+    <Button
+        android:id="@+id/buttonSortBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/upButton"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/self_prepared_layout_track1btn"
+        android:text="Sort by" />
+
+    <Button
+        android:id="@+id/self_prepared_layout_track1btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/upButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="New folder" />
+
+    <TextView
+        android:id="@+id/dragger_textView_Y"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/upButton"
+        android:background="#aaffaa" />
+
+    <ListView
+        android:id="@+id/filePickerListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/self_prepared_layout_ok_btn"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/dragger_textView_Y"
+        android:layout_weight="1" >
+    </ListView>
+
+    <Button
+        android:id="@+id/self_prepared_layout_ok_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="Button" />
+
+</RelativeLayout>

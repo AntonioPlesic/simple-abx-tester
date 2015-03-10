@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" another="value" andanother="">
+<head>
+  <meta charset="utf-8">
+  <title>Self-prepared tracks mode</title>
+</head>
+<body>
+
+<header>
+<h1>Self-prepared tracks mode</h1>
+</header>
+
+<section>
+<article>
+
+<A HREF="#codeword">Blue Words, Blue Words</A>
+
+<h2>Introduction</h2>
+<p> The idea behind self-prepared tracks mode is to enable you to use abx testing interfaces this app provides for files that have been encoded outside of this app. This is necessary if you wish to abx file types that are not supported, or use an encoder other than LAME, which is the only encoder currently built in (more are planned in the future).</p>
+
+<h2>Use cases</h2>
+
+<p>In all cases the source file is assumed to be lossless, stored either as FLAC or WAV @supported bps/samplerate/etc.</p>
+
+<h3>0) When you don't need to use this mode</h3>
+<p>In case you wanted to ABX, let's say, a FLAC track, and a LAME encoded 128kbit cbr mp3 of this track, there is no need to use self-prepared mode, just use ABXY/ABX mode, and it will do all file preparation (encoding,decoding & synchronization) for you. You can however do this manually too, if you want to.</p>
+
+<A NAME="codeword">
+<h3>1) Using external encoder to encode into one of supported file types (mp3; less likely FLAC, or WAV)</h3>
+<p>This is pretty straightforward: all you need to do is encode the source track in your encoder of choice, then provide both source an encoded file to the app. If target format is supported, it will be decoded by built in decoder (for mp3: mpglib/mpeg123 that comes with LAME; FLAC: libflac; WAV:no decoding necessary). See flow example EXAMPLE_NO.</p>
+
+<h3>2) Using external encoder to encode into one of unsupported file types(e.g. aac, ogg, wma...)</h3>
+<p>Encoding procedure is the same as in case 1). Difference here is that this app can't decode target format. So what you need to do in addition to encoding, is also decode encoded file yourself, using a decoder of your choice. Decoded file should be in WAV format (raw pcm). See flow EXAMPLE_NO.</p>
+
+<h2>Examples</h2>
+<p>Examples are targeting low bitrates on purpose, since at those bitrates, difference between lossless and lossy formats is clear as a day, and these examples only serve for illustrative purposes.</p>
+
+<h3>Example 1):  FLAC to mp3 @64kbit, using external encoder.</h3>
+<p>Let's say that we have some lossless FLAC file, called "How you remind me.flac" that we want to encode using an older version of LAME encoder, v3.99.3 (app has newer v3.99.5 built in), then abx the original and encoded files. For me, most convenient way to do so is to use a PC, on which I have installed Audacity (http://audacity.sourceforge.net) and have configured it to use LAME v3.99.3 for mp3 encoding. Pretty straight forward, I open our "How you remind me.flac" track, play it a little bit to ensure that it is the right track :), then go to file&rarr;export. There I select mp3 in "Save as type" field, and click "Options". In "Options" I select "Constant" as "Bit-rate mode", set the bitrate itself to 64 kbps, then press ok. Finally I set the filename to "How you remind me.audacity.LAMEv3.99.3.cbr64.mp3", choose save location and press save.</p>
+<p>After the encoding is done, what we end up with are the original "How you remind me.flac" lossless track and encoded "How you remind me.audacity.LAMEv3.99.3.cbr64.mp3" track. Since both track's formats are compatible with the app, all we need to do is transfer the files to our android device. Once transfered, start the app, select "Self-prepared tracks" mode, and enter the tracks in appropriate fields. Also, select your preferred testing interface, and last but not least, make sure that the "Synchronize tracks" option is checked, then press OK.</p>
+
+<h3>Example 2): FLAC to ogg @cca.64kbit, using external encoder.</h3>
+<p>Again, let's say that we have some lossless FLAC file, "How you remind me.flac". This time we want to encode it to smallest possible ogg (audio) file. Again, for simplicity, my external encoder of choice is Audacity that has enabled ogg output. Like in previuos example, first the lossless source file is opened in audacity. To export/encode it as ogg, I click File->export audio, select "Ogg Vorbis Files" from "Save as type", enter the desired output filename "How you remind me.audacity.ogg.lq.ogg", then click "options". In options, i set the slider to the lowest possible quality (0, far left), then click OK, and finally save.</p>
+<p> After encoding is complete what we have is lossless source file and its ogg, low quality encoded counterpart. However, this app is not able to decode ogg files, so we must decode it to raw format ourself. Most convenient raw format in this case is WAV (that contains linear pcm). To do so, we open our ogg file in Audacity, click File->Export Audio, and choose "WAV (Microsoft) signed 16 bit pcm" as "Save type". Let's name it "How you remind me.decodedFromOggLQ.wav". Now all we have to do is transfer the source and manually from ogg decoded files to android device, and load them in "Self-prepared tracks" mode as described before, making sure that "Synchronize tracks" option is checked.</p>
+</article>
+</section>
+</body>
+</html>

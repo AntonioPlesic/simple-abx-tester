@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+
+    <PreferenceCategory android:title="Data directory options">
+        
+	   <CheckBoxPreference 
+	       android:title="Use custom data directory"
+	       android:key="usesCustomDirectory"
+	       android:summaryOn="Uses custom directory"
+	       android:defaultValue="false"/>
+	   
+	   <!-- <EditTextPreference 
+	       android:title="Custom data directory"
+	       android:dependency="usesCustomDirectory"
+	       android:key="customDirectory"
+	       android:defaultValue="/storage/extSdCard"
+	       /> -->
+	   
+	   <!-- This is the preference that acts as a button that starts directory selection. Currently selected custom directory is shown
+	   		in summary. Since it is of base preference type (Preference) it doesen't hold any value on its own. Instead, the actual directory
+	   		value is stored as sharedPreference "betterCustomDirectory". Custom preference type, that extends Preference and can hold 
+	   		a value should be implemented in the future for clarity. -->
+	   <Preference 
+	       android:title="Custom directory"
+	       android:dependency="usesCustomDirectory"
+	       android:key="customDirectorySelector"
+	       />
+	   
+	   
+	   
+    </PreferenceCategory>
+    
+</PreferenceScreen>

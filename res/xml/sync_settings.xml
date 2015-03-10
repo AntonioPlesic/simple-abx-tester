@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <PreferenceCategory android:title="Synchronization settings">
+  
+        <PreferenceScreen 
+            android:title="Sync window size"
+            android:key="syncSubscreen">
+            
+            <antonioplesic.simpleabxtester.settings.PreferenceWithLongSummary
+			    android:key="qualitySubscreenDescription"
+			    android:selectable="false"
+			    android:persistent="false"
+			    android:summary="How many samples should be considered during the syncronization process. Minimum of 5000 samples corresponds to a difference of about 133ms. By having synchronization window that large, you can expect that files that differ in position up to 5000 samples, or 133 ms, will end up snychronized. In extreme cases where files are desynced to greater lengths, you can increase this slider, however, note that doing so greatly lengthens the synchronization procedure. In other words, don't tinker with this setting unless it is really needed, and it is most likely not."
+			    />
+            
+            <antonioplesic.simpleabxtester.settings.SeekbarPreference
+                android:key="syncWindowLength"
+                android:persistent="true"
+                />
+            
+            
+        </PreferenceScreen>
+        
+  
+    </PreferenceCategory>
+    
+
+</PreferenceScreen>

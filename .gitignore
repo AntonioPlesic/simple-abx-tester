@@ -1,0 +1,5 @@
+/bin
+/obj
+/libs
+jni/libmp3lame/*
+!jni/libmp3lame/Android.mk

@@ -1,0 +1,407 @@
+android.support.v4.app.BackStackState
+android.support.v4.app.BackStackState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.Fragment$SavedState
+android.support.v4.app.Fragment$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentManagerState
+android.support.v4.app.FragmentManagerState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentState
+android.support.v4.app.FragmentState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentTabHost: void setOnTabChangedListener(android.widget.TabHost$OnTabChangeListener)
+android.support.v4.app.FragmentTabHost$SavedState
+android.support.v4.app.FragmentTabHost$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.content.ModernAsyncTask$Status: android.support.v4.content.ModernAsyncTask$Status[] values()
+android.support.v4.content.ModernAsyncTask$Status: android.support.v4.content.ModernAsyncTask$Status valueOf(java.lang.String)
+android.support.v4.view.PagerTabStrip: void setTabIndicatorColor(int)
+android.support.v4.view.PagerTabStrip: void setTabIndicatorColorResource(int)
+android.support.v4.view.PagerTabStrip: int getTabIndicatorColor()
+android.support.v4.view.PagerTabStrip: void setTextSpacing(int)
+android.support.v4.view.PagerTabStrip: void setBackgroundDrawable(android.graphics.drawable.Drawable)
+android.support.v4.view.PagerTabStrip: void setBackgroundColor(int)
+android.support.v4.view.PagerTabStrip: void setBackgroundResource(int)
+android.support.v4.view.PagerTabStrip: void setDrawFullUnderline(boolean)
+android.support.v4.view.PagerTabStrip: boolean getDrawFullUnderline()
+android.support.v4.view.PagerTabStrip: int getMinHeight()
+android.support.v4.view.PagerTitleStrip: void setSingleLineAllCaps(android.widget.TextView)
+android.support.v4.view.PagerTitleStrip: void setTextSpacing(int)
+android.support.v4.view.PagerTitleStrip: int getTextSpacing()
+android.support.v4.view.PagerTitleStrip: void setNonPrimaryAlpha(float)
+android.support.v4.view.PagerTitleStrip: void setTextColor(int)
+android.support.v4.view.PagerTitleStrip: void setGravity(int)
+android.support.v4.view.PagerTitleStrip: int getMinHeight()
+android.support.v4.view.ViewPager: void setScrollState(int)
+android.support.v4.view.ViewPager: void setAdapter(android.support.v4.view.PagerAdapter)
+android.support.v4.view.ViewPager: android.support.v4.view.PagerAdapter getAdapter()
+android.support.v4.view.ViewPager: void setOnAdapterChangeListener(android.support.v4.view.ViewPager$OnAdapterChangeListener)
+android.support.v4.view.ViewPager: int getClientWidth()
+android.support.v4.view.ViewPager: void setCurrentItem(int)
+android.support.v4.view.ViewPager: int getCurrentItem()
+android.support.v4.view.ViewPager: void setOnPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener)
+android.support.v4.view.ViewPager: void setChildrenDrawingOrderEnabledCompat(boolean)
+android.support.v4.view.ViewPager: int getOffscreenPageLimit()
+android.support.v4.view.ViewPager: void setOffscreenPageLimit(int)
+android.support.v4.view.ViewPager: void setPageMargin(int)
+android.support.v4.view.ViewPager: int getPageMargin()
+android.support.v4.view.ViewPager: void setPageMarginDrawable(android.graphics.drawable.Drawable)
+android.support.v4.view.ViewPager: void setPageMarginDrawable(int)
+android.support.v4.view.ViewPager: void setScrollingCacheEnabled(boolean)
+android.support.v4.view.ViewPager$SavedState
+android.support.v4.view.ViewPager$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.widget.DrawerLayout: void setScrimColor(int)
+android.support.v4.widget.DrawerLayout: void setDrawerListener(android.support.v4.widget.DrawerLayout$DrawerListener)
+android.support.v4.widget.DrawerLayout: void setDrawerLockMode(int)
+android.support.v4.widget.DrawerLayout$SavedState
+android.support.v4.widget.DrawerLayout$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.widget.SlidingPaneLayout: void setParallaxDistance(int)
+android.support.v4.widget.SlidingPaneLayout: int getParallaxDistance()
+android.support.v4.widget.SlidingPaneLayout: void setSliderFadeColor(int)
+android.support.v4.widget.SlidingPaneLayout: int getSliderFadeColor()
+android.support.v4.widget.SlidingPaneLayout: void setCoveredFadeColor(int)
+android.support.v4.widget.SlidingPaneLayout: int getCoveredFadeColor()
+android.support.v4.widget.SlidingPaneLayout: void setPanelSlideListener(android.support.v4.widget.SlidingPaneLayout$PanelSlideListener)
+android.support.v4.widget.SlidingPaneLayout: void setShadowDrawable(android.graphics.drawable.Drawable)
+android.support.v4.widget.SlidingPaneLayout: void setShadowDrawableLeft(android.graphics.drawable.Drawable)
+android.support.v4.widget.SlidingPaneLayout: void setShadowDrawableRight(android.graphics.drawable.Drawable)
+android.support.v4.widget.SlidingPaneLayout: void setShadowResource(int)
+android.support.v4.widget.SlidingPaneLayout: void setShadowResourceLeft(int)
+android.support.v4.widget.SlidingPaneLayout: void setShadowResourceRight(int)
+android.support.v4.widget.SlidingPaneLayout$SavedState
+android.support.v4.widget.SlidingPaneLayout$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.widget.SwipeRefreshLayout: void setOnRefreshListener(android.support.v4.widget.SwipeRefreshLayout$OnRefreshListener)
+android.support.v4.widget.SwipeRefreshLayout: void setTriggerPercentage(float)
+android.support.v4.widget.SwipeRefreshLayout: void setRefreshing(boolean)
+android.support.v4.widget.SwipeRefreshLayout: void setTargetOffsetTopAndBottom(int)
+antonioplesic.simpleabxtester.BaseActivity: BaseActivity()
+antonioplesic.simpleabxtester.HelpActivity
+antonioplesic.simpleabxtester.HelpActivity: HelpActivity()
+antonioplesic.simpleabxtester.LayoutTestingActivity
+antonioplesic.simpleabxtester.LayoutTestingActivity: LayoutTestingActivity()
+antonioplesic.simpleabxtester.R$array: int listBitrateOptions
+antonioplesic.simpleabxtester.R$array: int listBitrateValues
+antonioplesic.simpleabxtester.R$array: int listQualityOptions
+antonioplesic.simpleabxtester.R$array: int listQualityValues
+antonioplesic.simpleabxtester.R$array: int listSortsNames
+antonioplesic.simpleabxtester.R$array: int listSortsValues
+antonioplesic.simpleabxtester.R$attr: int absoluteMaxValue
+antonioplesic.simpleabxtester.R$attr: int absoluteMinValue
+antonioplesic.simpleabxtester.R$attr: int singleThumb
+antonioplesic.simpleabxtester.R$color: int debugColor
+antonioplesic.simpleabxtester.R$color: int draggerButtonLabelColor
+antonioplesic.simpleabxtester.R$color: int draggerDescriptiveTextColor
+antonioplesic.simpleabxtester.R$color: int resultTextColor
+antonioplesic.simpleabxtester.R$dimen: int activity_horizontal_margin
+antonioplesic.simpleabxtester.R$dimen: int activity_vertical_margin
+antonioplesic.simpleabxtester.R$dimen: int draggerButtonLabelSize
+antonioplesic.simpleabxtester.R$dimen: int draggerButtonStroke
+antonioplesic.simpleabxtester.R$dimen: int draggerButtonStrokeSelected
+antonioplesic.simpleabxtester.R$dimen: int draggerDashGap
+antonioplesic.simpleabxtester.R$dimen: int draggerDashWidth
+antonioplesic.simpleabxtester.R$dimen: int draggerDescriptiveTextSize
+antonioplesic.simpleabxtester.R$dimen: int resultTextSize
+antonioplesic.simpleabxtester.R$drawable: int animation1
+antonioplesic.simpleabxtester.R$drawable: int bars1
+antonioplesic.simpleabxtester.R$drawable: int bars2
+antonioplesic.simpleabxtester.R$drawable: int bars3
+antonioplesic.simpleabxtester.R$drawable: int button_moveable_with_depth
+antonioplesic.simpleabxtester.R$drawable: int button_static_with_depth
+antonioplesic.simpleabxtester.R$drawable: int capture
+antonioplesic.simpleabxtester.R$drawable: int capture2
+antonioplesic.simpleabxtester.R$drawable: int dropable
+antonioplesic.simpleabxtester.R$drawable: int frame1
+antonioplesic.simpleabxtester.R$drawable: int frame2
+antonioplesic.simpleabxtester.R$drawable: int frame3
+antonioplesic.simpleabxtester.R$drawable: int ic_action_accept
+antonioplesic.simpleabxtester.R$drawable: int ic_action_cancel
+antonioplesic.simpleabxtester.R$drawable: int ic_action_done
+antonioplesic.simpleabxtester.R$drawable: int ic_file
+antonioplesic.simpleabxtester.R$drawable: int ic_flacfile
+antonioplesic.simpleabxtester.R$drawable: int ic_launcher
+antonioplesic.simpleabxtester.R$drawable: int ic_launcher_old
+antonioplesic.simpleabxtester.R$drawable: int ic_launcher_oldold
+antonioplesic.simpleabxtester.R$drawable: int ic_logo
+antonioplesic.simpleabxtester.R$drawable: int ic_mp3file
+antonioplesic.simpleabxtester.R$drawable: int ic_myfolder
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_animation
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_animation_alt
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_0
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_0_alt
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_1
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_1_alt
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_2
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_2_alt
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_3
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_3_alt
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_4
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_4_alt
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_5
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_5_alt
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_6
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_6_alt
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_7
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_7_alt
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_8
+antonioplesic.simpleabxtester.R$drawable: int ic_notification_progress_8_alt
+antonioplesic.simpleabxtester.R$drawable: int ic_pause
+antonioplesic.simpleabxtester.R$drawable: int ic_phone
+antonioplesic.simpleabxtester.R$drawable: int ic_play
+antonioplesic.simpleabxtester.R$drawable: int ic_repeat
+antonioplesic.simpleabxtester.R$drawable: int ic_repeat_lighter
+antonioplesic.simpleabxtester.R$drawable: int ic_repeat_state_list
+antonioplesic.simpleabxtester.R$drawable: int ic_sdcard
+antonioplesic.simpleabxtester.R$drawable: int ic_up
+antonioplesic.simpleabxtester.R$drawable: int ic_wavfile
+antonioplesic.simpleabxtester.R$drawable: int rounded_button_moveable
+antonioplesic.simpleabxtester.R$drawable: int rounded_button_moveable_selected
+antonioplesic.simpleabxtester.R$drawable: int rounded_button_moveable_side
+antonioplesic.simpleabxtester.R$drawable: int rounded_button_moveable_top
+antonioplesic.simpleabxtester.R$drawable: int rounded_button_ok_normal
+antonioplesic.simpleabxtester.R$drawable: int rounded_button_ok_normal_base
+antonioplesic.simpleabxtester.R$drawable: int rounded_button_ok_pressed
+antonioplesic.simpleabxtester.R$drawable: int rounded_button_ok_state_list
+antonioplesic.simpleabxtester.R$drawable: int rounded_button_static_selected
+antonioplesic.simpleabxtester.R$drawable: int rounded_button_static_side
+antonioplesic.simpleabxtester.R$drawable: int rounded_button_static_top
+antonioplesic.simpleabxtester.R$drawable: int roundedbuttonstatic
+antonioplesic.simpleabxtester.R$drawable: int seek_thumb_disabled
+antonioplesic.simpleabxtester.R$drawable: int seek_thumb_normal
+antonioplesic.simpleabxtester.R$drawable: int seek_thumb_pressed
+antonioplesic.simpleabxtester.R$drawable: int selector_overlay
+antonioplesic.simpleabxtester.R$drawable: int self_prepared_select_file_background_highlighted
+antonioplesic.simpleabxtester.R$drawable: int self_prepared_select_file_background_normal
+antonioplesic.simpleabxtester.R$drawable: int self_prepared_select_file_state_list_background
+antonioplesic.simpleabxtester.R$drawable: int start_area
+antonioplesic.simpleabxtester.R$drawable: int toggle_button_state_list
+antonioplesic.simpleabxtester.R$drawable: int toggle_button_state_list_2
+antonioplesic.simpleabxtester.R$id: int Button01
+antonioplesic.simpleabxtester.R$id: int Button1
+antonioplesic.simpleabxtester.R$id: int FrameLayout01
+antonioplesic.simpleabxtester.R$id: int FrameLayout02
+antonioplesic.simpleabxtester.R$id: int FrameLayout03
+antonioplesic.simpleabxtester.R$id: int FrameLayout04
+antonioplesic.simpleabxtester.R$id: int LinearLayout01
+antonioplesic.simpleabxtester.R$id: int LinearLayout02
+antonioplesic.simpleabxtester.R$id: int LinearLayout1
+antonioplesic.simpleabxtester.R$id: int LinearLayout2
+antonioplesic.simpleabxtester.R$id: int RelativeLayout1
+antonioplesic.simpleabxtester.R$id: int TextView01
+antonioplesic.simpleabxtester.R$id: int abxThreeButtonLayout
+antonioplesic.simpleabxtester.R$id: int action_cancel
+antonioplesic.simpleabxtester.R$id: int action_confirm
+antonioplesic.simpleabxtester.R$id: int action_settings
+antonioplesic.simpleabxtester.R$id: int btnABXBlindTest
+antonioplesic.simpleabxtester.R$id: int btnABXYBlindTest
+antonioplesic.simpleabxtester.R$id: int btnEncoderSettings
+antonioplesic.simpleabxtester.R$id: int btnOK
+antonioplesic.simpleabxtester.R$id: int btnPlayPause
+antonioplesic.simpleabxtester.R$id: int btnSelfPreparedTest
+antonioplesic.simpleabxtester.R$id: int buttonA
+antonioplesic.simpleabxtester.R$id: int buttonB
+antonioplesic.simpleabxtester.R$id: int buttonC_ABX
+antonioplesic.simpleabxtester.R$id: int buttonOK_ABX
+antonioplesic.simpleabxtester.R$id: int buttonSortBy
+antonioplesic.simpleabxtester.R$id: int buttonX
+antonioplesic.simpleabxtester.R$id: int buttonY
+antonioplesic.simpleabxtester.R$id: int cbxLoop
+antonioplesic.simpleabxtester.R$id: int checkBoxChooseDifferent
+antonioplesic.simpleabxtester.R$id: int create_folder
+antonioplesic.simpleabxtester.R$id: int debugAnother
+antonioplesic.simpleabxtester.R$id: int dragger_textView_X
+antonioplesic.simpleabxtester.R$id: int dragger_textView_Y
+antonioplesic.simpleabxtester.R$id: int dropableX
+antonioplesic.simpleabxtester.R$id: int dropableY
+antonioplesic.simpleabxtester.R$id: int dummyTextView
+antonioplesic.simpleabxtester.R$id: int dynamicHolderX
+antonioplesic.simpleabxtester.R$id: int dynamicHolderY
+antonioplesic.simpleabxtester.R$id: int edit_text
+antonioplesic.simpleabxtester.R$id: int filePickerListView
+antonioplesic.simpleabxtester.R$id: int forPreview
+antonioplesic.simpleabxtester.R$id: int frameLayout
+antonioplesic.simpleabxtester.R$id: int glavniLayout
+antonioplesic.simpleabxtester.R$id: int help_activity_web_view
+antonioplesic.simpleabxtester.R$id: int holderOnihKojiDrzeCiljeve
+antonioplesic.simpleabxtester.R$id: int itemDescription
+antonioplesic.simpleabxtester.R$id: int itemDescriptiveImage
+antonioplesic.simpleabxtester.R$id: int itemTitle
+antonioplesic.simpleabxtester.R$id: int linearLayoutPocetni
+antonioplesic.simpleabxtester.R$id: int lowerBottomSpaceY
+antonioplesic.simpleabxtester.R$id: int lowerCenterSpace
+antonioplesic.simpleabxtester.R$id: int lowerHalfY
+antonioplesic.simpleabxtester.R$id: int lowerLeftSpaceY
+antonioplesic.simpleabxtester.R$id: int lowerRightSpaceY
+antonioplesic.simpleabxtester.R$id: int lowerTopSpaceY
+antonioplesic.simpleabxtester.R$id: int picker_item_check_box
+antonioplesic.simpleabxtester.R$id: int picker_item_image_view
+antonioplesic.simpleabxtester.R$id: int picker_item_text_view
+antonioplesic.simpleabxtester.R$id: int radioButton1
+antonioplesic.simpleabxtester.R$id: int radioButton2
+antonioplesic.simpleabxtester.R$id: int radioButton3
+antonioplesic.simpleabxtester.R$id: int radioButton4
+antonioplesic.simpleabxtester.R$id: int radioGroup
+antonioplesic.simpleabxtester.R$id: int rangeSeekBar
+antonioplesic.simpleabxtester.R$id: int scenarij1
+antonioplesic.simpleabxtester.R$id: int scenarij2
+antonioplesic.simpleabxtester.R$id: int seekBar
+antonioplesic.simpleabxtester.R$id: int seekBarDummy
+antonioplesic.simpleabxtester.R$id: int seekBarSlider
+antonioplesic.simpleabxtester.R$id: int self_prepared_layout_ok_btn
+antonioplesic.simpleabxtester.R$id: int self_prepared_layout_scrollView
+antonioplesic.simpleabxtester.R$id: int self_prepared_layout_track1btn
+antonioplesic.simpleabxtester.R$id: int self_prepared_layout_track1textview
+antonioplesic.simpleabxtester.R$id: int self_prepared_layout_track2btn
+antonioplesic.simpleabxtester.R$id: int self_prepared_layout_track2textview
+antonioplesic.simpleabxtester.R$id: int self_prepared_radioABX
+antonioplesic.simpleabxtester.R$id: int self_prepared_radioABXY
+antonioplesic.simpleabxtester.R$id: int self_prepared_radio_group
+antonioplesic.simpleabxtester.R$id: int sliderPosition
+antonioplesic.simpleabxtester.R$id: int sort
+antonioplesic.simpleabxtester.R$id: int startHolderA
+antonioplesic.simpleabxtester.R$id: int startHolderB
+antonioplesic.simpleabxtester.R$id: int start_menu_About
+antonioplesic.simpleabxtester.R$id: int start_menu_Help
+antonioplesic.simpleabxtester.R$id: int staticHolderX
+antonioplesic.simpleabxtester.R$id: int staticHolderY
+antonioplesic.simpleabxtester.R$id: int syncCheckBox
+antonioplesic.simpleabxtester.R$id: int sync_explanation_text_view
+antonioplesic.simpleabxtester.R$id: int textView2
+antonioplesic.simpleabxtester.R$id: int toggleButtonA
+antonioplesic.simpleabxtester.R$id: int toggleButtonB
+antonioplesic.simpleabxtester.R$id: int toggleButtonC
+antonioplesic.simpleabxtester.R$id: int up
+antonioplesic.simpleabxtester.R$id: int upButton
+antonioplesic.simpleabxtester.R$id: int upperBottomSpaceX
+antonioplesic.simpleabxtester.R$id: int upperBottomSpaceY
+antonioplesic.simpleabxtester.R$id: int upperCenterSpace
+antonioplesic.simpleabxtester.R$id: int upperHalfX
+antonioplesic.simpleabxtester.R$id: int upperHalfY
+antonioplesic.simpleabxtester.R$id: int upperLeftSpaceX
+antonioplesic.simpleabxtester.R$id: int upperLeftSpaceY
+antonioplesic.simpleabxtester.R$id: int upperRightSpaceX
+antonioplesic.simpleabxtester.R$id: int upperRightSpaceY
+antonioplesic.simpleabxtester.R$id: int upperTopSpaceX
+antonioplesic.simpleabxtester.R$id: int upperTopSpaceY
+antonioplesic.simpleabxtester.R$id: int yetAnotherDebug
+antonioplesic.simpleabxtester.R$layout: int abx_three_button_frag_layout
+antonioplesic.simpleabxtester.R$layout: int activity_dummy_abxytester
+antonioplesic.simpleabxtester.R$layout: int activity_player_main
+antonioplesic.simpleabxtester.R$layout: int activity_player_main_test
+antonioplesic.simpleabxtester.R$layout: int create_folder_edit_text
+antonioplesic.simpleabxtester.R$layout: int dragger_frag_layout
+antonioplesic.simpleabxtester.R$layout: int help_activity_layout
+antonioplesic.simpleabxtester.R$layout: int new_start_screen_layout
+antonioplesic.simpleabxtester.R$layout: int picker_fragment_layout
+antonioplesic.simpleabxtester.R$layout: int picker_fragment_layout_old
+antonioplesic.simpleabxtester.R$layout: int picker_item_layout
+antonioplesic.simpleabxtester.R$layout: int prob_frag_layout
+antonioplesic.simpleabxtester.R$layout: int self_prepared_layout
+antonioplesic.simpleabxtester.R$layout: int slider_layout
+antonioplesic.simpleabxtester.R$layout: int sort_dialog_layout
+antonioplesic.simpleabxtester.R$layout: int start_screen_activity
+antonioplesic.simpleabxtester.R$layout: int test_layout
+antonioplesic.simpleabxtester.R$menu: int common_menu
+antonioplesic.simpleabxtester.R$menu: int dummy_abxytester
+antonioplesic.simpleabxtester.R$menu: int picker_item_selected_contextual_action_menu
+antonioplesic.simpleabxtester.R$menu: int picker_menu
+antonioplesic.simpleabxtester.R$menu: int player_main
+antonioplesic.simpleabxtester.R$string: int ABXdescriptioNormal
+antonioplesic.simpleabxtester.R$string: int ABXdescriptioOpposite
+antonioplesic.simpleabxtester.R$string: int action_settings
+antonioplesic.simpleabxtester.R$string: int app_name
+antonioplesic.simpleabxtester.R$string: int buttonAtext
+antonioplesic.simpleabxtester.R$string: int buttonBtext
+antonioplesic.simpleabxtester.R$string: int buttonXtext
+antonioplesic.simpleabxtester.R$string: int buttonYtext
+antonioplesic.simpleabxtester.R$string: int custom_directory_default
+antonioplesic.simpleabxtester.R$string: int demo_max_label
+antonioplesic.simpleabxtester.R$string: int demo_min_label
+antonioplesic.simpleabxtester.R$string: int encoder_bitrate_default
+antonioplesic.simpleabxtester.R$string: int encoder_quality_default
+antonioplesic.simpleabxtester.R$string: int hello_world
+antonioplesic.simpleabxtester.R$string: int outerSummary
+antonioplesic.simpleabxtester.R$string: int resultTextMaxLines
+antonioplesic.simpleabxtester.R$string: int self_prepared_none_selected
+antonioplesic.simpleabxtester.R$string: int self_prepared_ok
+antonioplesic.simpleabxtester.R$string: int self_prepared_select_track_1
+antonioplesic.simpleabxtester.R$string: int self_prepared_select_track_2
+antonioplesic.simpleabxtester.R$string: int self_prepared_sync
+antonioplesic.simpleabxtester.R$string: int self_prepared_sync_explanation
+antonioplesic.simpleabxtester.R$string: int self_prepared_test_type
+antonioplesic.simpleabxtester.R$string: int title_activity_dummy_abxytester
+antonioplesic.simpleabxtester.R$style: int AppBaseTheme
+antonioplesic.simpleabxtester.R$style: int AppTheme
+antonioplesic.simpleabxtester.R$styleable: int[] RangeSeekBar
+antonioplesic.simpleabxtester.R$styleable: int RangeSeekBar_absoluteMaxValue
+antonioplesic.simpleabxtester.R$styleable: int RangeSeekBar_absoluteMinValue
+antonioplesic.simpleabxtester.R$styleable: int RangeSeekBar_singleThumb
+antonioplesic.simpleabxtester.R$xml: int close_preference
+antonioplesic.simpleabxtester.R$xml: int data_settings
+antonioplesic.simpleabxtester.R$xml: int enkoder_settings
+antonioplesic.simpleabxtester.R$xml: int sync_settings
+antonioplesic.simpleabxtester.SelfPreparedSourcesActivity
+antonioplesic.simpleabxtester.SelfPreparedSourcesActivity: SelfPreparedSourcesActivity()
+antonioplesic.simpleabxtester.StartScreenActivity
+antonioplesic.simpleabxtester.StartScreenActivity: StartScreenActivity()
+antonioplesic.simpleabxtester.StartScreenActivity: void nativeMethod()
+antonioplesic.simpleabxtester.StartScreenActivity: void nativeMethod2(antonioplesic.simpleabxtester.StartScreenActivity$OnNativeMethod2ProgressUpdateListener)
+antonioplesic.simpleabxtester.dummytester.DummyABXYTester
+antonioplesic.simpleabxtester.dummytester.DummyABXYTester: DummyABXYTester()
+antonioplesic.simpleabxtester.encoder.EncoderService
+antonioplesic.simpleabxtester.encoder.EncoderService: EncoderService()
+antonioplesic.simpleabxtester.encoder.flacDecoder
+antonioplesic.simpleabxtester.encoder.flacDecoder: antonioplesic.simpleabxtester.encoder.FlacInfo getMetadata(java.lang.String)
+antonioplesic.simpleabxtester.encoder.flacDecoder: void decodeFile(java.lang.String,java.lang.String,antonioplesic.simpleabxtester.encoder.flacDecoder$OnDecoderProgressUpdateListener,antonioplesic.simpleabxtester.encoder.flacDecoder$StopExectutionCallback)
+antonioplesic.simpleabxtester.encoder.mp3EncoderDecoder
+antonioplesic.simpleabxtester.encoder.mp3EncoderDecoder: void initEncoderCBR(int,int,int,int,int,int)
+antonioplesic.simpleabxtester.encoder.mp3EncoderDecoder: void initEncoderPreset(int,int,int,int)
+antonioplesic.simpleabxtester.encoder.mp3EncoderDecoder: antonioplesic.simpleabxtester.encoder.Mp3Info getInfo(java.lang.String)
+antonioplesic.simpleabxtester.encoder.mp3EncoderDecoder: void initDecoder()
+antonioplesic.simpleabxtester.encoder.mp3EncoderDecoder: void destroyEncoder()
+antonioplesic.simpleabxtester.encoder.mp3EncoderDecoder: void destroyDecoder()
+antonioplesic.simpleabxtester.encoder.mp3EncoderDecoder: void encodeFile(java.lang.String,java.lang.String,antonioplesic.simpleabxtester.encoder.mp3EncoderDecoder$OnEncoderProgressUpdateListener,antonioplesic.simpleabxtester.encoder.mp3EncoderDecoder$StopExectutionCallback)
+antonioplesic.simpleabxtester.encoder.mp3EncoderDecoder: void decodeFile(java.lang.String,java.lang.String,antonioplesic.simpleabxtester.encoder.mp3EncoderDecoder$OnDecodeProgressUpdateListener,antonioplesic.simpleabxtester.encoder.mp3EncoderDecoder$StopExectutionCallback)
+antonioplesic.simpleabxtester.filepicker.FilePickerActivity
+antonioplesic.simpleabxtester.filepicker.FilePickerActivity: FilePickerActivity()
+antonioplesic.simpleabxtester.lifted.AutoResizeTextView: void setOnResizeListener(antonioplesic.simpleabxtester.lifted.AutoResizeTextView$OnTextResizeListener)
+antonioplesic.simpleabxtester.lifted.AutoResizeTextView: void setTextSize(float)
+antonioplesic.simpleabxtester.lifted.AutoResizeTextView: void setMaxTextSize(float)
+antonioplesic.simpleabxtester.lifted.AutoResizeTextView: float getMaxTextSize()
+antonioplesic.simpleabxtester.lifted.AutoResizeTextView: void setMinTextSize(float)
+antonioplesic.simpleabxtester.lifted.AutoResizeTextView: float getMinTextSize()
+antonioplesic.simpleabxtester.lifted.AutoResizeTextView: void setAddEllipsis(boolean)
+antonioplesic.simpleabxtester.lifted.AutoResizeTextView: boolean getAddEllipsis()
+antonioplesic.simpleabxtester.lifted.RangeSeekBar
+antonioplesic.simpleabxtester.lifted.RangeSeekBar: RangeSeekBar(android.content.Context)
+antonioplesic.simpleabxtester.lifted.RangeSeekBar: RangeSeekBar(android.content.Context,android.util.AttributeSet)
+antonioplesic.simpleabxtester.lifted.RangeSeekBar: RangeSeekBar(android.content.Context,android.util.AttributeSet,int)
+antonioplesic.simpleabxtester.lifted.RangeSeekBar: void setNotifyWhileDragging(boolean)
+antonioplesic.simpleabxtester.lifted.RangeSeekBar: java.lang.Number getAbsoluteMinValue()
+antonioplesic.simpleabxtester.lifted.RangeSeekBar: java.lang.Number getAbsoluteMaxValue()
+antonioplesic.simpleabxtester.lifted.RangeSeekBar: java.lang.Number getSelectedMinValue()
+antonioplesic.simpleabxtester.lifted.RangeSeekBar: void setSelectedMinValue(java.lang.Number)
+antonioplesic.simpleabxtester.lifted.RangeSeekBar: java.lang.Number getSelectedMaxValue()
+antonioplesic.simpleabxtester.lifted.RangeSeekBar: void setSelectedMaxValue(java.lang.Number)
+antonioplesic.simpleabxtester.lifted.RangeSeekBar: void setOnRangeSeekBarChangeListener(antonioplesic.simpleabxtester.lifted.RangeSeekBar$OnRangeSeekBarChangeListener)
+antonioplesic.simpleabxtester.lifted.RangeSeekBar: void setNormalizedMinValue(double)
+antonioplesic.simpleabxtester.lifted.RangeSeekBar: void setNormalizedMaxValue(double)
+antonioplesic.simpleabxtester.lifted.RangeSeekBar$NumberType: antonioplesic.simpleabxtester.lifted.RangeSeekBar$NumberType[] values()
+antonioplesic.simpleabxtester.lifted.RangeSeekBar$NumberType: antonioplesic.simpleabxtester.lifted.RangeSeekBar$NumberType valueOf(java.lang.String)
+antonioplesic.simpleabxtester.lifted.RangeSeekBar$Thumb: antonioplesic.simpleabxtester.lifted.RangeSeekBar$Thumb[] values()
+antonioplesic.simpleabxtester.lifted.RangeSeekBar$Thumb: antonioplesic.simpleabxtester.lifted.RangeSeekBar$Thumb valueOf(java.lang.String)
+antonioplesic.simpleabxtester.player.ABXselector$SelectedButton: antonioplesic.simpleabxtester.player.ABXselector$SelectedButton[] values()
+antonioplesic.simpleabxtester.player.ABXselector$SelectedButton: antonioplesic.simpleabxtester.player.ABXselector$SelectedButton valueOf(java.lang.String)
+antonioplesic.simpleabxtester.player.DraggerFragment$SelectedButton: antonioplesic.simpleabxtester.player.DraggerFragment$SelectedButton[] values()
+antonioplesic.simpleabxtester.player.DraggerFragment$SelectedButton: antonioplesic.simpleabxtester.player.DraggerFragment$SelectedButton valueOf(java.lang.String)
+antonioplesic.simpleabxtester.player.MyButton
+antonioplesic.simpleabxtester.player.MyButton: MyButton(android.content.Context)
+antonioplesic.simpleabxtester.player.MyButton: MyButton(android.content.Context,android.util.AttributeSet)
+antonioplesic.simpleabxtester.player.MyButton: MyButton(android.content.Context,android.util.AttributeSet,int)
+antonioplesic.simpleabxtester.player.PlayerActivity
+antonioplesic.simpleabxtester.player.PlayerActivity: PlayerActivity()
+antonioplesic.simpleabxtester.settings.PreferenceWithLongSummary
+antonioplesic.simpleabxtester.settings.PreferenceWithLongSummary: PreferenceWithLongSummary(android.content.Context)
+antonioplesic.simpleabxtester.settings.PreferenceWithLongSummary: PreferenceWithLongSummary(android.content.Context,android.util.AttributeSet)
+antonioplesic.simpleabxtester.settings.PreferenceWithLongSummary: PreferenceWithLongSummary(android.content.Context,android.util.AttributeSet,int)
+antonioplesic.simpleabxtester.settings.SeekbarPreference
+antonioplesic.simpleabxtester.settings.SeekbarPreference: SeekbarPreference(android.content.Context)
+antonioplesic.simpleabxtester.settings.SeekbarPreference: SeekbarPreference(android.content.Context,android.util.AttributeSet)
+antonioplesic.simpleabxtester.settings.SeekbarPreference: SeekbarPreference(android.content.Context,android.util.AttributeSet,int)
+antonioplesic.simpleabxtester.settings.SettingsActivity
+antonioplesic.simpleabxtester.settings.SettingsActivity: SettingsActivity()

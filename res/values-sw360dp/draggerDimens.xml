@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- sw360, light blue --> <color name="debugColor">#0077FF</color>
+    
+    <dimen name="draggerButtonLabelSize">20dp</dimen>
+    <color name="draggerButtonLabelColor">#000000</color>
+    <dimen name="draggerButtonStroke">4dp</dimen>
+    <dimen name="draggerButtonStrokeSelected">6dp</dimen>
+    
+    <dimen name="draggerDescriptiveTextSize">11dp</dimen>
+    <color name="draggerDescriptiveTextColor">#000000</color>
+    
+    <dimen name="resultTextSize">18.5dp</dimen>
+    <color name="resultTextColor">#000000</color>
+    <string name="resultTextMaxLines">2</string>
+    
+    <dimen name="draggerDashWidth">6dp</dimen>
+    <dimen name="draggerDashGap">4dp</dimen>
+    
+</resources>

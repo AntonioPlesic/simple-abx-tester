@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Simple ABX Tester</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_dummy_abxytester">DummyABXYTester</string>
+    <string name="buttonYtext">Y</string>
+    <string name="buttonBtext">B</string>
+    <string name="buttonXtext">X</string>
+    <string name="buttonAtext">A</string>
+    <string name="ABXdescriptioNormal">Select a track <u>that is the same</u> as the reference track, then press OK</string>
+    <string name="ABXdescriptioOpposite">Select a track <u>that differs</u> from the reference track, then press OK</string>
+    
+</resources>

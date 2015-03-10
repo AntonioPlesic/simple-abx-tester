@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" another="value" andanother="">
+<head>
+  <meta charset="utf-8">
+  <title>Supported formats and limitations</title>
+</head>
+<body>
+
+<header>
+<h1>Supported formats and limitations</h1>
+</header>
+
+<section>
+<article>
+<p>Following input formats are currently supported across the whole application, and can serve as lossless sources in automated test modes:<br>
+<ul>
+<li>FLAC - stereo, 16 bits/sample, sample rate 44.1kHz</li>
+<li>WAV - stereo, 16 bits/sample, sample rate 44.1kHz, uncompressed signed linear PCM</li>
+</ul>
+<p>Self-prepared tracks mode in addition to previous formats supports:</p>
+<ul>
+<li>MP3 - stereo, sample rate 44.1kHz</li>
+Decoding is provided by <u>mpg123 based</u> (mpglib) decoder that is included in LAME v3.99.5 library.
+</ul>
+Support for more resolutions and sample rates is planned/being looked into. However, up to version 5.0, vanilla Android offers very little with regard to audio: only 16 bits per sample resolution, and only 44.1kHz & 48kHz sample rates. Android 5.0 supposedly changes these limitations, so app will probably get upgraded in the future</p>
+
+<p>Other formats/decoders are planned (ogg definitely, hoping for m4a/aac too).</p>
+
+</article>
+</section>
+</body>
+</html>

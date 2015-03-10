@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" another="value" andanother="">
+<head>
+  <meta charset="utf-8">
+  <title>Self-prepared mode</title>
+</head>
+<body>
+
+<header>
+<h1>Self-prepared mode</h1>
+</header>
+
+<section>
+<article>
+
+<p>You can use this mode to perform abx tests on file types that are not supported by automated mode. Automated mode is quite limited: it can only prepare tests using LAME v3.99.5 encoder/decoder (for now). To use the self-prepared mode, as the name suggests, you must encode and decode the files being tested yourself.</p>
+
+<h2>Example</h2>
+Let's say that you wish to abx a lossless file and it's ogg encoded counterpart, using quality of your choice. What you should do is summarised in these steps:<br>
+
+<ol start="0">
+<li>Have the lossless source file handy: <b>someTrack.flac</b><br>
+<li>Encode it to ogg using an external encoder. Result: <b>someTrack.ogg</b></li>
+<li>This App can't read ogg files, so you should decode it to a format the App supports (WAV, FLAC). Name the resulting file something descriptive, like <b>someTrack_decoded_from_ogg.wav</b></li>
+<li>Enter the self prepared mode and select the files obtained in <b>steps 0 and 2</b>, i.e. <b>someTrack.flac</b> & <b>someTrack_decoded_from_ogg.wav</b>, using the appropriate buttons.</li>
+<li>Make sure the synchronize option is checked (it is by default). That way the App will synchronize the tracks, in case the encoding/decoding process produced some padding at the beggining or start of files. Now, note that the case being described next is almost never going to happen, but should still be considered: if during testing you notice that the files are not synchronized, you should then synchronize the tracks yourself, and provide those synced versions in step 3.</li>
+<li>Choose the testing interface and press OK.</li>
+</ol>
+<br>
+
+<b>Remarks:</b>
+<ul>
+<li>format limitations from the <a href='supportedFormats.html'>supported formats</a> section apply: files obtained in steps 0 and 2 must, be it either FLAC or WAV, be <b>stereo</b>, have <b>16 bits per sample</b>, and have <b>sample rate of 44.1kHz</b>. WAV files should be of uncompressed signed linear PCM variety.
+</li>
+<li>
+it should be obvious that if you used a desktop computer to encode/decode the files, you must transfer the files to your android device in order to abx test them :)
+</li>
+<li>
+you might want to test some other mp3 encoder other than LAME v3.99.5 the App uses in the automated mode. In that case, you only need to encode the file externally, there is no need to decode it, if you are OK with LAME (libmpg/mpg123) being used for decoding.
+</li>
+</ul>
+
+
+</article>
+</section>
+</body>
+</html>
