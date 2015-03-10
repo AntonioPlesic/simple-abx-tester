@@ -1,0 +1,87 @@
+RATIONALE: Most of the work required here is due to my inexperience with C/C++ and corresponding makefiles, including the android specific ones. So while I was trying to get everything to run, I scrambled the folder structure a bit, which then necessitated changes in various includes and so on. I will fix this in the future, but for now, follow these instructions to get everything set up as I did.
+
+INSTRUCTIONS:
+
+It is assumed that your local project repository is named "SimpleABXTester"
+
+1. Obtain LAME v3.99.5 source code, and extract it to some directory, for example "LAME_SRC_DIR". Depending on your extraction philosophy, you might end up with a intermediate folder called "lame-3.99.5", so the entire source then resides in "LAME_SRC_DIR/lame-3.99.5"
+
+2. Copy .../LAME_SRC_DIR/lame-3.99.5/libmp3lame to .../SimpleABXTester/jni and select yes if asked to merge folders.
+
+3. Copy .../LAME_SRC_DIR/lame-3.99.5/mpglib to .../SimpleABXTester/jni/libmp3lame
+
+4. Copy .../LAME_SRC_DIR/lame-3.99.5/include/lame.h to .../SimpleABXTester/jni/libmp3lame
+
+
+Now you need to modify some lines. Some modifications are due to the changed folder structure, and some are due to the guide I was following in order to compile lame for android, since I was a newbie.
+
+
+5. In ".../SimpleABXTester/jni/libmp3lame/mpglib_interface.c"
+
+- insert lines at line 27
+		#define HAVE_MPGLIB 1
+		(newline)
+		
+- replace line 
+		#include "interface.h"
+  with
+		#include "mpglib/interface.h"
+		
+
+		
+6. In ".../SimpleABXTester/jni/libmp3lame/set_get.h"
+
+- replace line
+		#include <lame.h>
+  with
+		#include "lame.h"
+
+
+		
+7. In ".../SimpleABXTester/jni/libmp3lame/util.h"
+
+- replace line
+		extern ieee754_float32_t fast_log2(ieee754_float32_t x);
+  with
+		extern float fast_log2(float x);
+		
+
+		
+8. In ".../SimpleABXTester/jni/libmp3lame/mpglib/interface.c"
+
+- replace lines
+		#include "lame.h"
+		#include "machine.h"
+		#include "VbrTag.h"
+  with
+		#include "../lame.h"
+		#include "../machine.h"
+		#include "../VbrTag.h"
+
+- insert lines at line 43
+		(newline)
+		#define HAVE_MPGLIB 1
+
+
+
+9. In ".../SimpleABXTester/jni/libmp3lame/mpglib/layer3.c"
+
+- replace lines
+		#include "lame.h"
+		#include "machine.h"
+		#include "encoder.h"
+		#include "lame-analysis.h"
+  with
+		#include "../lame.h"
+		#include "../machine.h"
+		#include "../encoder.h"
+		#include "../lame-analysis.h"
+
+		
+		
+10. In ".../SimpleABXTester/jni/libmp3lame/mpglib/mpglib.h"
+
+- replace line
+		#include "lame.h"
+  with
+		#include "../lame.h"
