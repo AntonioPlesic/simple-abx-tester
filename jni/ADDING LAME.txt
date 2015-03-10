@@ -1,19 +1,30 @@
-RATIONALE: Most of the work required here is due to my inexperience with C/C++ and corresponding makefiles, including the android specific ones. So while I was trying to get everything to run, I scrambled the folder structure a bit, which then necessitated changes in various includes and so on. I will fix this in the future, but for now, follow these instructions to get everything set up as I did.
+RATIONALE: Most of the work required here is due to my inexperience with C/C++ 
+and corresponding makefiles, including the android specific ones. So while I was
+trying to get everything to run, I scrambled the folder structure a bit, which 
+then necessitated changes in various includes and so on. I will fix this in the 
+future, but for now, follow these instructions to get everything set up as I 
+did.
 
 INSTRUCTIONS:
 
 It is assumed that your local project repository is named "SimpleABXTester"
 
-1. Obtain LAME v3.99.5 source code, and extract it to some directory, for example "LAME_SRC_DIR". Depending on your extraction philosophy, you might end up with a intermediate folder called "lame-3.99.5", so the entire source then resides in "LAME_SRC_DIR/lame-3.99.5"
+1. Obtain LAME v3.99.5 source code, and extract it to some directory, for 
+example "LAME_SRC_DIR". Depending on your extraction philosophy, you might end 
+up with a intermediate folder called "lame-3.99.5", so the entire source then 
+resides in "LAME_SRC_DIR/lame-3.99.5"
 
-2. Copy .../LAME_SRC_DIR/lame-3.99.5/libmp3lame to .../SimpleABXTester/jni and select yes if asked to merge folders.
+2. Copy .../LAME_SRC_DIR/lame-3.99.5/libmp3lame to .../SimpleABXTester/jni and 
+   select yes if asked to merge folders.
 
 3. Copy .../LAME_SRC_DIR/lame-3.99.5/mpglib to .../SimpleABXTester/jni/libmp3lame
 
 4. Copy .../LAME_SRC_DIR/lame-3.99.5/include/lame.h to .../SimpleABXTester/jni/libmp3lame
 
 
-Now you need to modify some lines. Some modifications are due to the changed folder structure, and some are due to the guide I was following in order to compile lame for android, since I was a newbie.
+Now you need to modify some lines. Some modifications are due to the changed 
+folder structure, and some are due to the guide I was following in order to 
+compile lame for android, since I was a newbie.
 
 
 5. In ".../SimpleABXTester/jni/libmp3lame/mpglib_interface.c"
