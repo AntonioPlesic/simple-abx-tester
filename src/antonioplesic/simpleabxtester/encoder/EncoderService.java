@@ -409,9 +409,9 @@ public class EncoderService extends IntentService {
 							settingsHelper.getSyncWindowLength() * 2 ); /*** why times two? 
 							TODO: analyze code, find out why this must be multiplied by two, and comment it,
 							so you don't end up in this situation again -.- */ 
-//			int samplesToTrim =  t.getSynchronizationOffset(5000);
-//			int samplesToTrim =  t.getSynchronizationOffset2(5000, ***
-			int samplesToTrim = t.getSynchronizationOffset2(settingsHelper.getSyncWindowLength(),
+//			int samplesToTrim =  t.getSynchronizationOffsetOLD(5000);
+//			int samplesToTrim =  t.getSynchronizationOffset(5000, ***
+			int samplesToTrim = t.getSynchronizationOffset(settingsHelper.getSyncWindowLength(),
 			
 			new TracksSynchronizer.onSyncronizationProgressUpdateListener() {
 				

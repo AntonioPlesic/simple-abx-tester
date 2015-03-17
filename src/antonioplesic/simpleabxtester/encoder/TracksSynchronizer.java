@@ -10,6 +10,9 @@ import java.util.Timer;
 
 import android.util.Log;
 
+/**
+ * For synchronizing tracks.
+ */
 public class TracksSynchronizer {
 
 	int nChannels;
@@ -29,6 +32,10 @@ public class TracksSynchronizer {
 
 	}
 
+	/**
+	 * Dump data to stdout in hex format for debugging purposes.
+	 * @param data
+	 */
 	public void dump(byte data[]) {
 
 		int i = 0;
@@ -51,15 +58,11 @@ public class TracksSynchronizer {
 		if (this.nChannels == 2 && sampleSize == 16) {
 
 			long bytesPerTrack = (sampleSize / 8) * nChannels * (length);
-			long samplesPerChannel = (bytesPerTrack / nChannels)
-					/ (sampleSize / 8);
+			long samplesPerChannel = (bytesPerTrack / nChannels) / (sampleSize / 8);
 
 			byte data1[] = new byte[(int) bytesPerTrack];
 			byte data2[] = new byte[(int) bytesPerTrack];
 
-			// char right1[] = new char[(int) samplesPerChannel];
-			//
-			// char right2[] = new char[(int) samplesPerChannel];
 
 			FileInputStream f1 = null;
 			FileInputStream f2 = null;
@@ -72,7 +75,6 @@ public class TracksSynchronizer {
 			}
 
 			long bytesToSkip = (offset * sampleSize * nChannels) / 8;
-			// System.out.println("bitova za preskociti: " + bytesToSkip);
 
 			f1.skip(bytesToSkip);
 			f2.skip(bytesToSkip);
@@ -130,6 +132,7 @@ public class TracksSynchronizer {
 	}
 
 	/**
+	 * @deprecated
 	 * Calculates number of samples that needs to be clipped (or padded) from
 	 * track2 in order to achieve synchronization
 	 * <p>
@@ -146,7 +149,7 @@ public class TracksSynchronizer {
 	 * 
 	 * @return Number of samples track2 is trailing behind track1
 	 */
-	public int getSynchronizationOffset(int offsetLimit) {
+	public int getSynchronizationOffsetOLD(int offsetLimit) {
 
 		double differencePower = Double.POSITIVE_INFINITY;
 		int bestOffset = 0;
@@ -177,10 +180,88 @@ public class TracksSynchronizer {
 		return bestOffset;
 	}
 	
-	
-	public int getSynchronizationOffset2(int offsetLimit, onSyncronizationProgressUpdateListener listener, StopExectutionCallback stopCallback) {
-
-		//TODO: stopCallback
+	/**
+	 * How the synchronization works:
+	 * Let's say we have two signals, a) and b). They are identical, or nearly identical,
+	 * but one of them, to be precise, b), is padded with 2 zeros at the start (for example,
+	 * encoder added some silence at the start, as some encoders do that).
+	 * <pre>
+	 * Signals:
+	 *      a)  -1 -1  0  1  2  2  3  3  2  2  1  1  0  0 -1 -1 -2 -2 -3 -3 ...
+	 *      b)   0  0 -1 -1  0  1  2  2  3  3  2  2  1  1  0  0 -1 -1 -2 -2 ... </pre>
+	 *      
+	 * To synchronize the tracks, we "slide" them against each other multiple times,
+	 * in both directions, each time offseting the slide a bit. For each position,
+	 * we calculate the power of the difference signal. Tracks should be in sync when
+	 * power of the difference signal is the lowest.
+	 * <pre>
+	 * Window size = 5
+	 * offsetLimit = 3
+	 * 
+	 * Offset 0
+	 *      a)  -1 -1  0  1  2
+	 *      b)   0  0 -1 -1  0
+	 *      ------------------
+	 *   diff)  -1 -1  1  2  2   power = (-1)^2 + (-1)^2 + 1^2 + 2^2 + 2^2 
+	 *                                 = 11
+	 *   
+	 * Offset 1, clockwise
+	 *      a)     -1 -1  0  1  2  -->   
+	 *      b)   0  0 -1 -1  0  1  <-- 
+	 *      ---------------------
+	 *   diff)     -1  0  1  1  1   power = (-1)^2 + 0^2 + 1^2 + 1^2 + 1^2 
+	 *                                    = 4
+	 *                                    
+	 * Offset 2, clockwise
+	 *      a)        -1 -1  0  1  2	
+	 *      b)   0  0 -1 -1  0  1  2
+	 *      ------------------------
+	 *   diff)         0  0  0  0  0   power = 0
+	 * 		
+	 * Offset 3, clockwise
+	 *      a)           -1 -1  0  1  2
+	 *      b)  0  0  -1 -1  0  1  2  2
+	 *      ---------------------------
+	 *   diff)            0 -1 -1 -1  0   power = 3
+	 *
+	 * Offset 1, counterclockwise
+	 *      a) -1 -1  0  1  2  2
+	 *      b)     0  0 -1 -1  0
+	 *      --------------------
+	 * 	 diff)    -1  0  2  3  2	power = 18
+	 *
+	 * Offset 2, counterclockwise
+	 *      a) -1 -1  0  1  2  2  3
+	 *      b)        0  0 -1 -1  0
+	 *      -----------------------
+	 *   diff)        0  1  3  3  3   power = 28
+	 *
+	 * Offset 3, counterclockwise
+	 *      a) -1 -1  0  1  2  2  3  3
+	 *      b)           0  0 -1 -1  0
+	 *      --------------------------
+	 *   diff)           1  2  3  4  3   power = 39   </pre>
+	 *   
+	 * Clearly, power of the difference signal is the smallest in the case of clockwise
+	 * offset by 2 samples, so to synchronize these two tracks, either track a) should
+	 * be padded with 2 zero samples in front, or track b) should be clipped of its
+	 * first two samples.<pre></pre> 
+	 *  
+	 * @param offsetLimit
+	 *            how much samples in each direction should be searched,
+	 *            recommended at least 3000
+	 *            
+	 * @param listener
+	 *            progress update listener
+	 *            	
+	 * @param stopCallback
+	 *            using this callback, method periodically checks whether it
+	 *            should stop executing, for example because user canceled the job
+	 *            
+	 * @return
+	 *            Number of samples track2 is trailing behind track1
+	 */
+	public int getSynchronizationOffset(int offsetLimit, onSyncronizationProgressUpdateListener listener, StopExectutionCallback stopCallback) {
 		
 		double differencePower = Double.POSITIVE_INFINITY;
 		int bestOffset = 0;
@@ -188,8 +269,7 @@ public class TracksSynchronizer {
 		int requiredIterations = 2*offsetLimit; //Approximately
 		int iteration = 0;
 
-		// TODO: baci exception kada je offset predug u odnosu na ucitane
-		// sampleove
+		// TODO: throw exception when offset is too long with respect to loaded samples
 
 		for (int offset = 0; offset < offsetLimit; offset++) {
 			
@@ -299,6 +379,7 @@ public class TracksSynchronizer {
 		int len2 = signal2.length - offset2;
 		
 		int shorterLength = (len1 <= len2) ? len1 : len2;
+		Log.i(this.getClass().getName(),"signal length: " + shorterLength);
 		
 		for(int i = 0; i<shorterLength; i++){
 			this.globalDifferenceSignal[i] = sampleValue(signal1[i + offset1], true) - sampleValue(signal2[i + offset2], true);
@@ -307,9 +388,6 @@ public class TracksSynchronizer {
 		this.globalLength = shorterLength;
 	}
 	
-	
-	
-
 	private int swapEndianess16(char sample) {
 
 		int first8Bits = (sample >> 8) & 0x000000ff;
