@@ -6,8 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Timer;
 
+import android.text.InputFilter.LengthFilter;
 import android.util.Log;
 
 /**
@@ -24,6 +24,7 @@ public class TracksSynchronizer {
 	
 	int globalDifferenceSignal[];
 	int globalLength;
+	long windowSize;
 
 	public TracksSynchronizer(int nChannels, int sampleSize) {
 
@@ -52,12 +53,34 @@ public class TracksSynchronizer {
 		System.out.println();
 	}
 
-	public void loadSamples(String path1, String path2, long offset, long length)
+	public void loadSamples(String path1, String path2, long offset, long windowSize)
 			throws IOException {
+		
+		this.windowSize = windowSize;
 
 		if (this.nChannels == 2 && sampleSize == 16) {
 
-			long bytesPerTrack = (sampleSize / 8) * nChannels * (length);
+			long bytesPerTrack = (sampleSize / 8) * nChannels * (windowSize*2); //why *2 ? See diagram.
+			/*  _______
+			 * |1 1 1 1|1 1 1 1 1 1 1 1 1 1 1 1
+			 * |2 2 2 2|2 2 2 2 2 2 2 2 2 2 2 2
+			 * ^‾‾‾‾‾‾‾^
+			 * |       |             windowSize
+			 * |‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+			 * |  _____|_
+			 * |1|1 1 1.1|1 1 1 1 1 1 1 1 1 1 1
+			 * | |2 2 2.2|2 2 2 2 2 2 2 2 2 2 2
+			 * |  ‾‾‾‾‾|‾
+			 * |       |   .   
+			 * |       |   .
+			 * |       |   .
+			 * |       |_______
+			 * |1 1 1 1|1 1 1 1|1 1 1 1 1 1 1 1
+			 * |       |2 2 2 2|2 2 2 2 2 2 2 2      This is valid as long as
+			 * |        ‾‾‾‾‾‾‾^                     offsetLimit <= windowSize
+			 * |               |   windowSize*2      (offsetLimit defined later)
+			 *  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+			 */
 			long samplesPerChannel = (bytesPerTrack / nChannels) / (sampleSize / 8);
 
 			byte data1[] = new byte[(int) bytesPerTrack];
@@ -263,6 +286,8 @@ public class TracksSynchronizer {
 	 */
 	public int getSynchronizationOffset(int offsetLimit, onSyncronizationProgressUpdateListener listener, StopExectutionCallback stopCallback) {
 		
+		Long startTime = System.currentTimeMillis();
+		
 		double differencePower = Double.POSITIVE_INFINITY;
 		int bestOffset = 0;
 		
@@ -319,6 +344,9 @@ public class TracksSynchronizer {
 				bestOffset = -offset;
 			}
 		}
+		
+		Long endTime = System.currentTimeMillis();
+		Log.i(this.getClass().getName(),"best offset: " + bestOffset + ", found after " + ((float) (endTime-startTime))/1000);
 		
 		return bestOffset;
 	}
@@ -379,6 +407,10 @@ public class TracksSynchronizer {
 		int len2 = signal2.length - offset2;
 		
 		int shorterLength = (len1 <= len2) ? len1 : len2;
+		
+		//TODO: rewrite (remove len1 & len2), check if offsetLimit <= windowSize
+		
+		shorterLength =  (int) windowSize;
 		Log.i(this.getClass().getName(),"signal length: " + shorterLength);
 		
 		for(int i = 0; i<shorterLength; i++){
