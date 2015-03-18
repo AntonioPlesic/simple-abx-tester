@@ -22,9 +22,9 @@ public class TracksSynchronizer {
 	char left1[];
 	char left2[];
 	
-	int globalDifferenceSignal[];
-	int globalLength;
-	long windowSize;
+	int differenceSignal[];
+//	int globalLength;
+	int windowSize;
 
 	public TracksSynchronizer(int nChannels, int sampleSize) {
 
@@ -79,10 +79,11 @@ public class TracksSynchronizer {
 	 * 
 	 * @throws IOException
 	 */
-	public void loadSamples(String path1, String path2, long samplesToSkip, long windowSize)
+	public void loadSamples(String path1, String path2, long samplesToSkip, int windowSize)
 			throws IOException {
 		
 		this.windowSize = windowSize;
+		this.differenceSignal = new int[windowSize];
 
 		if (this.nChannels == 2 && sampleSize == 16) {
 
@@ -323,7 +324,7 @@ public class TracksSynchronizer {
 		for (int offset = 0; offset < offsetLimit; offset++) {
 			
 			calculateDifferenceSignal(this.left1, 0, this.left2, offset);
-			double power = signalPower(globalDifferenceSignal, globalLength);
+			double power = signalPower(differenceSignal, windowSize);
 			
 			iteration = offset;
 			
@@ -350,7 +351,7 @@ public class TracksSynchronizer {
 		for (int offset = 0; offset < offsetLimit; offset++) {
 			
 			calculateDifferenceSignal(this.left1, offset,this.left2, 0);
-			double power = signalPower(globalDifferenceSignal, globalLength);
+			double power = signalPower(differenceSignal, windowSize);
 			
 			iteration+=1;
 			if(iteration%100==0){
@@ -378,17 +379,17 @@ public class TracksSynchronizer {
 	}
 
 	public double signalPower(int signal[]) {
-
+		
 		double sumOfPowers = 0;
-
+		
 		for (int sample : signal) {
 			sumOfPowers += (((float) sample) * sample);
 		}
-
+		
 		double averagePower = sumOfPowers / signal.length;
-
 		return averagePower;
 	}
+	
 	
 	public double signalPower(int signal[], int signalLength){
 		
@@ -404,44 +405,49 @@ public class TracksSynchronizer {
 		return averagePower;
 	}
 	
+	/**
+	 * Calculates difference signal of two input signals difference[] = signal1[] - signal2[].
+	 * Signal lengths are equal to windowSize. Difference is stored in differenceSignal 
+	 * field.
+	 * 
+	 * @param signal1		Signal being subtracted from
+	 * @param offset1 		Samples to skip in signal1
+	 * @param signal2		Signal that is being subtracted
+	 * @param offset2		Samples to skip in signal2
+	 */
 	private void calculateDifferenceSignal(char signal1[], int offset1, char signal2[], int offset2){
 		
-		//initialize differenceSignal array for the first time
-		if(this.globalDifferenceSignal == null){
-			this.globalDifferenceSignal = new int[signal1.length];
+		//TODO: check if offsetLimit <= windowSize
+		
+		for(int i = 0; i<windowSize; i++){
+			this.differenceSignal[i] = sampleValue(signal1[i + offset1], true) - sampleValue(signal2[i + offset2], true);
 		}
 		
-		int len1 = signal1.length - offset1;
-		int len2 = signal2.length - offset2;
-		
-		int shorterLength = (len1 <= len2) ? len1 : len2;
-		
-		//TODO: rewrite (remove len1 & len2), check if offsetLimit <= windowSize
-		
-		shorterLength =  (int) windowSize;
-//		Log.i(this.getClass().getName(),"signal length: " + shorterLength);
-		
-		for(int i = 0; i<shorterLength; i++){
-			this.globalDifferenceSignal[i] = sampleValue(signal1[i + offset1], true) - sampleValue(signal2[i + offset2], true);
-		}
-		
-		this.globalLength = shorterLength;
+//		this.globalLength = (int) windowSize; //TODO: not necessary any more, global length is now always equal to windowSize
 	}
 	
-	private int swapEndianess16(char sample) {
-
+	
+	private int swapEndianess16(char sample) 
+	{
 		int first8Bits = (sample >> 8) & 0x000000ff;
 		int second8Bits = sample & 0x000000ff;
-
 		second8Bits = second8Bits << 8;
 
 		return first8Bits | second8Bits;
 	}
 
-	private int sampleValue(char sample, boolean flipped) {
-
+	/**
+	 * Returns integer value of the sample.
+	 * 
+	 * @param sample 			16 bit sample
+	 * @param isLittleEndian 	Whether the sample format is littleEndian, if 
+	 * 							not then it is necessarily bigEndian
+	 * @return					Integer value of the sample.
+	 */
+	private int sampleValue(char sample, boolean isLittleEndian) 
+	{
 		// but first switch bytes due to endianess
-		if (flipped) {
+		if (isLittleEndian) {
 			sample = (char) swapEndianess16(sample);
 		}
 
@@ -465,7 +471,6 @@ public class TracksSynchronizer {
 	 * 
 	 * @param fileToTrimmPath
 	 * 					Path to the raw pcm file being trimmed.
-	 * 
 	 * @param samplesToTrim
 	 * 					Number of samples to remove from the start of file.
 	 */
@@ -484,21 +489,11 @@ public class TracksSynchronizer {
 			justPath = "";
 		}
 
-		// try {
-		// tempFile = File.createTempFile(original.getName(), ".tmp", new
-		// File(justPath));
-		// } catch (IOException e1) {
-		// // TODO Auto-generated catch block
-		// e1.printStackTrace();
-		// }
-
-		tempFile = new File("" + justPath + File.separator + original.getName()
-				+ ".tmp");
+		tempFile = new File("" + justPath + File.separator + original.getName() + ".tmp");
 
 //		System.out.println(original.getName());
 
-		int bytesToTrim = (this.sampleSize / 8) * this.nChannels
-				* samplesToTrim;
+		int bytesToTrim = (this.sampleSize / 8) * this.nChannels * samplesToTrim;
 
 		BufferedInputStream in = null;
 		BufferedOutputStream out = null;
@@ -549,5 +544,6 @@ public class TracksSynchronizer {
 	public interface StopExectutionCallback{
 		public boolean stopExecution();
 	}
+	
 
 }
