@@ -154,54 +154,6 @@ public class TracksSynchronizer {
 		return channel;
 	}
 
-	/**
-	 * @deprecated
-	 * Calculates number of samples that needs to be clipped (or padded) from
-	 * track2 in order to achieve synchronization
-	 * <p>
-	 * If returned number of samples <i>nsam</i> is positive, track2 is
-	 * <i>nsam</i> samples behind the track1, and should be clipped of
-	 * <i>nsam</i> beginning samples. If returned number is negative, then the
-	 * opposite holds: track1 is trailing behind track2, so track1 should be
-	 * clipped, or alternatively track2 should be padded with <i>nsam</i>
-	 * samples at the beginning.
-	 * 
-	 * @param offsetLimit
-	 *            how much samples in each direction should be searched,
-	 *            recommended at least 3000
-	 * 
-	 * @return Number of samples track2 is trailing behind track1
-	 */
-	public int getSynchronizationOffsetOLD(int offsetLimit) {
-
-		double differencePower = Double.POSITIVE_INFINITY;
-		int bestOffset = 0;
-
-		// TODO: baci exception kada je offset predug u odnosu na ucitane
-		// sampleove
-
-		for (int offset = 0; offset < offsetLimit; offset++) {
-			double power = signalStrength(differenceSignal(this.left1, 0,
-					this.left2, offset));
-			if (power <= differencePower) {
-				// System.out.println(" " + power + " " + offset);
-				differencePower = power;
-				bestOffset = offset;
-			}
-		}
-
-		for (int offset = 0; offset < offsetLimit; offset++) {
-			double power = signalStrength(differenceSignal(this.left1, offset,
-					this.left2, 0));
-			if (power <= differencePower) {
-				// System.out.println(" " + power + " -" + offset);
-				differencePower = power;
-				bestOffset = -offset;
-			}
-		}
-
-		return bestOffset;
-	}
 	
 	/**
 	 * How the synchronization works:
@@ -376,24 +328,6 @@ public class TracksSynchronizer {
 		double averagePower = sumOfPowers / signalLength;
 		
 		return averagePower;
-	}
-
-	//TODO: bezveze je svaki put alocirati novi signal. Alocirati memoriju jednom, a potom ju iznova puniti
-	private int[] differenceSignal(char signal1[], int offset1, char signal2[],
-			int offset2) {
-
-		int len1 = signal1.length - offset1;
-		int len2 = signal2.length - offset2;
-
-		int shorterLength = (len1 <= len2) ? len1 : len2;
-
-		int differenceSignal[] = new int[shorterLength];
-
-		for (int i = 0; i < shorterLength; i++) {
-			differenceSignal[i] = sampleValue(signal1[i + offset1], true) - sampleValue(signal2[i + offset2], true);
-		}
-
-		return differenceSignal;
 	}
 	
 	private void calculateDifferenceSignal(char signal1[], int offset1, char signal2[], int offset2){
