@@ -53,7 +53,33 @@ public class TracksSynchronizer {
 		System.out.println();
 	}
 
-	public void loadSamples(String path1, String path2, long offset, long windowSize)
+	/**
+	 * Loads samples into the synchronizer.
+	 * @param path1 
+	 * 				Path to file 1
+	 * 
+	 * @param path2
+	 * 				Path to file 2
+	 * 
+	 * @param samplesToSkip
+	 * 				How much samples to skip. Useful when tracks being synchronized are
+	 * 				silent at the start (there is no point in synchronizing silence).
+	 * 				Also, attempting synchronization at parts that contains actual music gives
+	 * 				much better results.
+	 * 
+	 * @param windowSize
+	 * 				How many samples are being taken into account during synchronization.
+	 * 				Window size of for example 3000 means that the power of the  difference 
+	 * 				signal calculation is based on 3000 samples.Implicitly, this also sets limit to
+	 * 				how far can the two tracks be desynced for this procedure to work.
+	 * 				Typical desyncronization that occurs during mp3 encoding/decoding
+	 * 				is 2257 samples (due do priming (padding in front) with zeros). In order
+	 * 				to sync original and such encoded/decoded file, you need sync window
+	 * 				of at least 2257 samples.
+	 * 
+	 * @throws IOException
+	 */
+	public void loadSamples(String path1, String path2, long samplesToSkip, long windowSize)
 			throws IOException {
 		
 		this.windowSize = windowSize;
@@ -61,25 +87,53 @@ public class TracksSynchronizer {
 		if (this.nChannels == 2 && sampleSize == 16) {
 
 			long bytesPerTrack = (sampleSize / 8) * nChannels * (windowSize*2); //why *2 ? See diagram.
-			/*  _______
-			 * |1 1 1 1|1 1 1 1 1 1 1 1 1 1 1 1
-			 * |2 2 2 2|2 2 2 2 2 2 2 2 2 2 2 2
-			 * ^‾‾‾‾‾‾‾^
-			 * |       |             windowSize
-			 * |‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-			 * |  _____|_
-			 * |1|1 1 1.1|1 1 1 1 1 1 1 1 1 1 1
-			 * | |2 2 2.2|2 2 2 2 2 2 2 2 2 2 2
-			 * |  ‾‾‾‾‾|‾
-			 * |       |   .   
-			 * |       |   .
-			 * |       |   .
-			 * |       |_______
-			 * |1 1 1 1|1 1 1 1|1 1 1 1 1 1 1 1
-			 * |       |2 2 2 2|2 2 2 2 2 2 2 2      This is valid as long as
-			 * |        ‾‾‾‾‾‾‾^                     offsetLimit <= windowSize
-			 * |               |   windowSize*2      (offsetLimit defined later)
-			 *  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+			/*
+			 * Read getSynchronizationOffset() documentation first for general idea behind
+			 * this synchronization procedure.
+			 * 
+			 * Boxed area represents synchronization window. Here it is 4 samples long: what
+			 * it means is that only 4 samples from each track will be used for calculation of a
+			 * difference signal at any given moment. But, in order to calculate difference signal
+			 * for different offsets, more than 4 samples per track must be actually loaded into
+			 * the memory, but only 4 from each are used for calculation at any given time.
+			 * 
+			 * If offset limit is 4, that means we want to slide tracks against one another
+			 * up to 4 samples in both directions.
+			 * 
+			 * Here only counterclockwise sliding is pictured. If we want to calculate difference
+			 * when counterclockwise offset is 4 samples long, it is clear from the last picture
+			 * that then samples numbered 5, 6, 7 and 8 from track 1 must be loaded into memory.
+			 * 
+			 * If counterclockwise offset is 1 sample long, then samples 2, 3, 4 and 5 from
+			 * track 1 must be loaded, and so on.
+			 *
+			/*
+			 * 
+			 * Smp. No.  1 2 3 4 5 6 7 8¦9 ... only first 8 are loaded, as synchronization
+			 *                                 windows length is 4. This enables sliding of
+			 *                                 up to 4 samples in each direction. More
+			 *                                 generally, the following must hold:  
+			 *                                 offsetLimit <= windowSize.
+			 *  
+			 *           _______   
+			 * Track 1  |1 1 1 1│1 1 1 1¦1 1 1 1 1 1 1 1      Offset is 0
+			 * Track 2  |2 2 2 2│2 2 2 2¦2 2 2 2 2 2 2 2
+			 *          ^‾‾‾‾‾‾‾^
+			 *          |       |             windowSize
+			 *          |‾‾‾‾‾‾‾|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+			 *          |  _____|_
+			 * Track 1  |1|1 1 1.1|1 1 1¦1 1 1 1 1 1 1 1      Offset is 1, counterclockwise
+			 * Track 2  | |2 2 2.2|2 2 2¦2 2 2 2 2 2 2 2
+			 *          |  ‾‾‾‾‾|‾
+			 *          |       |   .   
+			 *          |       |   .
+			 *          |       |   .
+			 *          |       |_______
+			 * Track 1  |1 1 1 1|1 1 1 1|1 1 1 1 1 1 1 1      Offset is 4, counterclockwise
+			 * Track 2  |       |2 2 2 2|2 2 2 2 2 2 2 2      
+			 *          |        ‾‾‾‾‾‾‾^                     This is valid as long as
+			 *          |               |   windowSize*2      offsetLimit <= windowSize
+			 *           ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾      (offsetLimit defined later)
 			 */
 			long samplesPerChannel = (bytesPerTrack / nChannels) / (sampleSize / 8);
 
@@ -97,7 +151,7 @@ public class TracksSynchronizer {
 				e.printStackTrace();
 			}
 
-			long bytesToSkip = (offset * sampleSize * nChannels) / 8;
+			long bytesToSkip = (samplesToSkip * sampleSize * nChannels) / 8;
 
 			f1.skip(bytesToSkip);
 			f2.skip(bytesToSkip);
@@ -136,14 +190,24 @@ public class TracksSynchronizer {
 
 	}
 
-	private char[] separateChannel(long samplesPerChannel, byte[] data1) {
+	/**
+	 * Extracts one channel (left one) from the track snippet. 
+	 * One channel is enough for synchronization purposes.
+	 * 
+	 * @param samplesPerChannel 
+	 * 				how much samples each channel contains
+	 * @param snippet 
+	 * 				array holding stereo 16 bit pcm data
+	 * @return array holding left channel data
+	 */
+	private char[] separateChannel(long samplesPerChannel, byte[] snippet) {
 		char channel[] = new char[(int) samplesPerChannel];
 		for (int sampleId = 0; sampleId < samplesPerChannel; sampleId++) {
-			char first8Bits = (char) data1[4 * sampleId];
+			char first8Bits = (char) snippet[4 * sampleId];
 			first8Bits = (char) (first8Bits << 8);
 			// System.out.println(String.format("%02X", (int) first8Bits));
 
-			char last8Bits = (char) data1[4 * sampleId + 1];
+			char last8Bits = (char) snippet[4 * sampleId + 1];
 			last8Bits = (char) (last8Bits & 0xFF);
 			// System.out.println(String.format("%02X", (int) last8Bits));
 
@@ -156,6 +220,8 @@ public class TracksSynchronizer {
 
 	
 	/**
+	 * Returns the number of samples track2 is trailing behind track1.<br><br>
+	 *  
 	 * How the synchronization works:
 	 * Let's say we have two signals, a) and b). They are identical, or nearly identical,
 	 * but one of them, to be precise, b), is padded with 2 zeros at the start (for example,
@@ -203,7 +269,7 @@ public class TracksSynchronizer {
 	 *      a) -1 -1  0  1  2  2
 	 *      b)     0  0 -1 -1  0
 	 *      --------------------
-	 * 	 diff)    -1  0  2  3  2	power = 18
+	 *   diff)    -1  0  2  3  2	power = 18
 	 *
 	 * Offset 2, counterclockwise
 	 *      a) -1 -1  0  1  2  2  3
@@ -221,10 +287,15 @@ public class TracksSynchronizer {
 	 * offset by 2 samples, so to synchronize these two tracks, either track a) should
 	 * be padded with 2 zero samples in front, or track b) should be clipped of its
 	 * first two samples.<pre></pre> 
-	 *  
+	 * 
 	 * @param offsetLimit
-	 *            how much samples in each direction should be searched,
-	 *            recommended at least 3000
+	 *            how much should tracks be time shifted, slided around in each
+	 *            direction when trying to achieve syncronization. Must be 
+	 *            less or equal to windowSize set during sample loading. Make
+	 *            sure this holds, as it is not currently checked against, but
+	 *            will produce wrong results if it doesen't hold.
+	 *            Recommended at least 3000 (this requires windowSize of
+	 *            at least 3000 samples).
 	 *            
 	 * @param listener
 	 *            progress update listener
@@ -235,6 +306,7 @@ public class TracksSynchronizer {
 	 *            
 	 * @return
 	 *            Number of samples track2 is trailing behind track1
+	 *  
 	 */
 	public int getSynchronizationOffset(int offsetLimit, onSyncronizationProgressUpdateListener listener, StopExectutionCallback stopCallback) {
 		
@@ -251,7 +323,7 @@ public class TracksSynchronizer {
 		for (int offset = 0; offset < offsetLimit; offset++) {
 			
 			calculateDifferenceSignal(this.left1, 0, this.left2, offset);
-			double power = signalStrength(globalDifferenceSignal, globalLength);
+			double power = signalPower(globalDifferenceSignal, globalLength);
 			
 			iteration = offset;
 			
@@ -269,6 +341,7 @@ public class TracksSynchronizer {
 				// System.out.println(" " + power + " " + offset);
 				differencePower = power;
 				bestOffset = offset;
+				Log.i(this.getClass().getName(),"new best offset = " + bestOffset + ", power = " + differencePower);
 			}
 		}
 
@@ -277,7 +350,7 @@ public class TracksSynchronizer {
 		for (int offset = 0; offset < offsetLimit; offset++) {
 			
 			calculateDifferenceSignal(this.left1, offset,this.left2, 0);
-			double power = signalStrength(globalDifferenceSignal, globalLength);
+			double power = signalPower(globalDifferenceSignal, globalLength);
 			
 			iteration+=1;
 			if(iteration%100==0){
@@ -294,6 +367,7 @@ public class TracksSynchronizer {
 				// System.out.println(" " + power + " -" + offset);
 				differencePower = power;
 				bestOffset = -offset;
+				Log.i(this.getClass().getName(),"new best offset = " + bestOffset + ", power = " + differencePower);
 			}
 		}
 		
@@ -303,7 +377,7 @@ public class TracksSynchronizer {
 		return bestOffset;
 	}
 
-	public double signalStrength(int signal[]) {
+	public double signalPower(int signal[]) {
 
 		double sumOfPowers = 0;
 
@@ -316,7 +390,7 @@ public class TracksSynchronizer {
 		return averagePower;
 	}
 	
-	public double signalStrength(int signal[], int signalLength){
+	public double signalPower(int signal[], int signalLength){
 		
 		double sumOfPowers = 0;
 		
@@ -345,7 +419,7 @@ public class TracksSynchronizer {
 		//TODO: rewrite (remove len1 & len2), check if offsetLimit <= windowSize
 		
 		shorterLength =  (int) windowSize;
-		Log.i(this.getClass().getName(),"signal length: " + shorterLength);
+//		Log.i(this.getClass().getName(),"signal length: " + shorterLength);
 		
 		for(int i = 0; i<shorterLength; i++){
 			this.globalDifferenceSignal[i] = sampleValue(signal1[i + offset1], true) - sampleValue(signal2[i + offset2], true);
@@ -364,7 +438,7 @@ public class TracksSynchronizer {
 		return first8Bits | second8Bits;
 	}
 
-	public int sampleValue(char sample, boolean flipped) {
+	private int sampleValue(char sample, boolean flipped) {
 
 		// but first switch bytes due to endianess
 		if (flipped) {
@@ -386,6 +460,15 @@ public class TracksSynchronizer {
 		return sign * kompl;
 	}
 
+	/**
+	 * Trims certain amount of samples from the start of a raw pcm file.
+	 * 
+	 * @param fileToTrimmPath
+	 * 					Path to the raw pcm file being trimmed.
+	 * 
+	 * @param samplesToTrim
+	 * 					Number of samples to remove from the start of file.
+	 */
 	public void trimmStart(String fileToTrimmPath, int samplesToTrim) {
 
 		File original = new File(fileToTrimmPath);
