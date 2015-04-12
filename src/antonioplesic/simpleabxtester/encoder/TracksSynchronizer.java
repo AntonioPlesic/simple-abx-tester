@@ -21,6 +21,9 @@ public class TracksSynchronizer {
 	char left1[];
 	char left2[];
 	
+	int calculatedSignal1Samples[];
+	int calculatedSignal2Samples[];
+	
 	int differenceSignal[];
 	int windowSize;
 
@@ -285,7 +288,19 @@ public class TracksSynchronizer {
 		int iteration = 0;
 
 		// TODO: throw exception when offset is too long with respect to loaded samples
-
+		
+		
+		//calculate sample values
+		calculatedSignal1Samples = new int[left1.length];
+		calculatedSignal2Samples = new int[left2.length];
+		for(int i = 0; i < left1.length; i++){
+			calculatedSignal1Samples[i] = sampleValue(left1[i], true);
+		}
+		for(int i = 0; i < left2.length; i++){
+			calculatedSignal2Samples[i] = sampleValue(left2[i], true);
+		}
+		
+		
 		for (int offset = 0; offset < offsetLimit; offset++) {
 			
 			calculateDifferenceSignal(this.left1, 0, this.left2, offset);
@@ -336,7 +351,7 @@ public class TracksSynchronizer {
 		}
 		
 		Long endTime = System.currentTimeMillis();
-//		Log.i(this.getClass().getName(),"best offset: " + bestOffset + ", found after " + ((float) (endTime-startTime))/1000);
+		Log.i(this.getClass().getName(),"best offset: " + bestOffset + ", found after " + ((float) (endTime-startTime))/1000);
 		
 		return bestOffset;
 	}
@@ -391,8 +406,15 @@ public class TracksSynchronizer {
 		
 		//TODO: check if offsetLimit <= windowSize
 		
+//		for(int i = 0; i<windowSize; i++){
+//			this.differenceSignal[i] = sampleValue(signal1[i + offset1], true) - sampleValue(signal2[i + offset2], true);
+//		}
+//		
+		//code above recalculated sampleValue every time the sample was accessed, which was very wasteful
+		//Now, sample values are calculated just once.
+				
 		for(int i = 0; i<windowSize; i++){
-			this.differenceSignal[i] = sampleValue(signal1[i + offset1], true) - sampleValue(signal2[i + offset2], true);
+			this.differenceSignal[i] = calculatedSignal1Samples[i + offset1] - calculatedSignal2Samples[i + offset2];
 		}
 		
 	}
