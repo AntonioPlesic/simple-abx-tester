@@ -351,7 +351,7 @@ public class TracksSynchronizer {
 		}
 		
 		Long endTime = System.currentTimeMillis();
-		Log.i(this.getClass().getName(),"best offset: " + bestOffset + ", found after " + ((float) (endTime-startTime))/1000);
+//		Log.i(this.getClass().getName(),"best offset: " + bestOffset + ", found after " + ((float) (endTime-startTime))/1000);
 		
 		return bestOffset;
 	}
@@ -405,13 +405,6 @@ public class TracksSynchronizer {
 	private void calculateDifferenceSignal(char signal1[], int offset1, char signal2[], int offset2){
 		
 		//TODO: check if offsetLimit <= windowSize
-		
-//		for(int i = 0; i<windowSize; i++){
-//			this.differenceSignal[i] = sampleValue(signal1[i + offset1], true) - sampleValue(signal2[i + offset2], true);
-//		}
-//		
-		//code above recalculated sampleValue every time the sample was accessed, which was very wasteful
-		//Now, sample values are calculated just once.
 				
 		for(int i = 0; i<windowSize; i++){
 			this.differenceSignal[i] = calculatedSignal1Samples[i + offset1] - calculatedSignal2Samples[i + offset2];
